@@ -22,4 +22,4 @@
 
 #### 游戏截图(Screen shot)：
 
-![image](https://github.com/vszed/MetalSlug/blob/master/ScreenShot/1.png)
+![image](https://github.com/vszed/Jackal/tree/master/ScreenShot/1.png)
