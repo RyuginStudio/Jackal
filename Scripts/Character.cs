@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     float currentTime;
     float directionUpdate;
+    float moveAnimaUpdate;
 
     public Sprite sp_up;
     public Sprite sp_down;
@@ -22,6 +23,7 @@ public class Character : MonoBehaviour
     {
         currentTime = Time.time;
         directionUpdate = currentTime;
+        moveAnimaUpdate = currentTime;
     }
 
     // Update is called once per frame
@@ -66,7 +68,27 @@ public class Character : MonoBehaviour
             CharacDirectAnima();
         }
 
+        if (CharacterStatus == Status.move && currentTime - moveAnimaUpdate > 0.05f)
+        {
+            moveAnimaUpdate = Time.time;
+            CharacMoveAnima();
+        }
+
     }
+
+     void CharacMoveAnima()  //移动动画
+     {
+         GameData.UpOrDown *= -1;
+         var pos = this.transform.position;
+
+         if (CharacterDirection == Direction.up || CharacterDirection == Direction.down) //上下要明显
+         {
+             this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.055f, pos.z);
+             return;
+         }
+
+         this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.05f, pos.z);
+     }
 
     void CharacDirectControl(float x, float y)  //方向控制器(很奇葩的操控)
     {
