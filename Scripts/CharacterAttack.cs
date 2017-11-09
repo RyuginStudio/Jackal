@@ -6,6 +6,7 @@ public class CharacterAttack : MonoBehaviour {
 
 	public AudioSource machinGunEffect;
 	public AudioSource fireInTheHole;
+	public GameObject prefabBulletMachinGun;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class CharacterAttack : MonoBehaviour {
 		{
 			Debug.Log("machineGun");
 			machinGunEffect.Play();
+			Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0));
 		}
 		if (Input.GetKeyDown(KeyCode.K))
 		{
