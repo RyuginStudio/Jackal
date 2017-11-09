@@ -8,16 +8,6 @@ public class Character : MonoBehaviour
     float directionUpdate;
     float moveAnimaUpdate;
 
-    public Sprite sp_up;
-    public Sprite sp_down;
-    public Sprite sp_left;
-    public Sprite sp_right;
-    public Sprite sp_leftUp;
-    public Sprite sp_leftDown;
-    public Sprite sp_rightUp;
-    public Sprite sp_rightDown;
-
-
     // Use this for initialization
     void Start()
     {
@@ -58,8 +48,14 @@ public class Character : MonoBehaviour
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(Vector3.right * horizontal * GameData.CharacterSpeed * Time.deltaTime);
-        transform.Translate(Vector3.up * vertical * GameData.CharacterSpeed * Time.deltaTime);
+        if (horizontal != 0)
+        {
+            this.transform.position = new Vector2(transform.position.x + horizontal * GameData.CharacterSpeed * Time.deltaTime, transform.position.y);
+        } 
+        if (vertical != 0)
+        {
+            this.transform.position = new Vector2(transform.position.x, transform.position.y + vertical * GameData.CharacterSpeed * Time.deltaTime);
+        }           
 
         if (currentTime - directionUpdate > GameData.TurnSensitivity)  //要先转到斜方向，不是立刻转到上、下、左、右
         {
@@ -76,19 +72,19 @@ public class Character : MonoBehaviour
 
     }
 
-     void CharacMoveAnima()  //移动动画
-     {
-         GameData.UpOrDown *= -1;
-         var pos = this.transform.position;
+    void CharacMoveAnima()  //移动动画
+    {
+        GameData.UpOrDown *= -1;
+        var pos = this.transform.position;
 
-         if (CharacterDirection == Direction.up || CharacterDirection == Direction.down) //上下要明显
-         {
-             this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.055f, pos.z);
-             return;
-         }
+        if (CharacterDirection == Direction.up || CharacterDirection == Direction.down) //上下要明显
+        {
+            this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.055f, pos.z);
+            return;
+        }
 
-         this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.05f, pos.z);
-     }
+        this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.05f, pos.z);
+    }
 
     void CharacDirectControl(float x, float y)  //方向控制器(很奇葩的操控)
     {
@@ -287,7 +283,7 @@ public class Character : MonoBehaviour
             }
         }
 
-         if (x == 1 && y == 1)
+        if (x == 1 && y == 1)
         {
             CharacterStatus = Status.move;
 
@@ -480,7 +476,7 @@ public class Character : MonoBehaviour
                     }
             }
         }
-    
+
         if (x == 0 && y == 0)
         {
             CharacterStatus = Status.idle;
@@ -493,42 +489,42 @@ public class Character : MonoBehaviour
         {
             case Direction.up:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_up;
+                    this.transform.rotation = Quaternion.Euler(0, 0, 0);
                     break;
                 }
             case Direction.down:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_down;
+                    this.transform.rotation = Quaternion.Euler(0, 0, 180);
                     break;
                 }
             case Direction.left:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_left;
+                    this.transform.rotation = Quaternion.Euler(0, 0, 90);
                     break;
                 }
             case Direction.right:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_right;
+                    this.transform.rotation = Quaternion.Euler(0, 0, -90);
                     break;
                 }
             case Direction.leftUp:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_leftUp;
+                    this.transform.rotation = Quaternion.Euler(0, 0, 45);
                     break;
                 }
             case Direction.leftDown:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_leftDown;
+                    this.transform.rotation = Quaternion.Euler(0, 0, 135);
                     break;
                 }
             case Direction.rightUp:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_rightUp;
+                    this.transform.rotation = Quaternion.Euler(0, 0, -45);
                     break;
                 }
             case Direction.rightDown:
                 {
-                    this.GetComponent<SpriteRenderer>().sprite = sp_rightDown;
+                    this.transform.rotation = Quaternion.Euler(0, 0, -135);
                     break;
                 }
 
