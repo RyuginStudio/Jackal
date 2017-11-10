@@ -78,6 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47a89453f789c4418adb734d613b3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletInitPos: {x: 0, y: 0, z: 0}
+  PrefabBullet: {fileID: 1998105618693964}
+  bulletEffect: {fileID: 21300000, guid: 015037fb216af4526b6e9b3fd7360214, type: 3}
   bulletKind: 0
 --- !u!212 &212744016508203204
 SpriteRenderer:
