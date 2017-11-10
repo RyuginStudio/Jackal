@@ -18,22 +18,20 @@ public class CharacterAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         attack();
-
     }
 
     public void attack()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Debug.Log("machineGun");
+            //Debug.Log("machineGun");
             machinGunEffect.Play();
             Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("FireInTheHole");
+            //Debug.Log("FireInTheHole");
             fireInTheHole.Play();
         }
     }

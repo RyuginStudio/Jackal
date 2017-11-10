@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
 
     void bulletDestroy()  //子弹销毁条件：1.碰撞 2.达到射程
     {
-        Debug.Log("Destroy prefab");
+        //Debug.Log("Destroy prefab");
         Destroy(PrefabBullet);
     }
 }
