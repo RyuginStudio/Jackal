@@ -6,15 +6,16 @@ public class Bullet : MonoBehaviour
 {
     public Vector3 bulletInitPos;
     public GameObject PrefabBullet;
-    public GameObject Shotter;  //发射子弹的人（可以是角色）
-    public GameObject target;      //攻击目标
-    public Sprite bulletEffect;    //子弹爆炸效果
+    public GameObject Shotter;        //发射子弹的人(可以是角色)
+    public GameObject target;         //攻击目标
+    public static Vector3 attackPos;  //打哪里(子弹发射时为角色的 => 即时位置，并保持不变)
+    public Sprite bulletEffect;       //子弹爆炸效果
 
 
     // Use this for initialization
     void Start()
     {
-        bulletInitPos = Shotter.transform.position;
+        init();
     }
 
     // Update is called once per frame
@@ -26,6 +27,18 @@ public class Bullet : MonoBehaviour
         }
 
         bulletTraject();
+    }
+
+    void init()
+    {
+        bulletInitPos = Shotter.transform.position;
+
+        if (bulletKind != bullet.bulletCharacMachinGun)
+        {
+            target = GameObject.FindGameObjectWithTag("Player1");
+        }
+
+        attackPos = target.transform.position;
     }
 
     public enum bullet
@@ -64,9 +77,15 @@ public class Bullet : MonoBehaviour
                 {
                     float step = GameData.bulletEnemyTankBunkerSpeed * Time.deltaTime;
 
+                    //子弹未达到射程时，修正attackPos
+                    if (Vector3.Distance(attackPos, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance)
+                    {
+                        
+                    }
+
                     if (Vector3.Distance(transform.position, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+                        transform.position = Vector3.MoveTowards(transform.position, attackPos, step);
                     }
                     else
                     {
