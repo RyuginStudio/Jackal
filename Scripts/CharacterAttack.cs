@@ -27,7 +27,8 @@ public class CharacterAttack : MonoBehaviour
         {
             //Debug.Log("machineGun");
             machinGunEffect.Play();
-            Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0));
+            var bulletPrefab = Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0));
+            bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
         }
         if (Input.GetKeyDown(KeyCode.K))
         {

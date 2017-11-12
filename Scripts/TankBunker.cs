@@ -6,6 +6,7 @@ public class TankBunker : Enemy
 {
     private float currentTime;
     private float attackUpdate;
+    public GameObject prefabBulletTankBunker;
 
     // Use this for initialization
     void Start()
@@ -35,7 +36,8 @@ public class TankBunker : Enemy
         {
             //Debug.Log("TankBunkerAttack");
             attackAnimation();
-
+            var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(0,0,0));
+            bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
             attackUpdate = Time.time;
         }
     }
@@ -50,10 +52,11 @@ public class TankBunker : Enemy
         var distance_x = thisPos.x - targetPos.x; //对边
         var distance = Vector2.Distance(thisPos, targetPos); //斜边
 
-        var rotation = targetPos.y > 0 ? System.Math.Asin(distance_x / distance) / 3.14 * 180 + 180 : -System.Math.Asin(distance_x / distance) / 3.14 * 180;
-        //Debug.Log(rotation);
+        var rotationZ = targetPos.y > 0 ? System.Math.Asin(distance_x / distance) / System.Math.PI * 180 + 180 : -System.Math.Asin(distance_x / distance) / System.Math.PI * 180;
 
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)rotation);
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)rotationZ);
+
+        //Debug.Log("炮塔Quatertion: " + transform.rotation);
 
         // 2.开火炮塔摇摆
         //Debug.Log("TankBunkerAttackAnimation");

@@ -6,23 +6,33 @@ public class Bullet : MonoBehaviour
 {
     public Vector3 bulletInitPos;
     public GameObject PrefabBullet;
-    public Sprite bulletEffect;  //子弹爆炸效果
+    public GameObject Shotter;  //发射子弹的人（可以是角色）
+    public GameObject target;      //攻击目标
+    public Sprite bulletEffect;    //子弹爆炸效果
+
 
     // Use this for initialization
     void Start()
     {
-        bulletInitPos = transform.position;
+        bulletInitPos = Shotter.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (bulletKind != bullet.bulletCharacMachinGun)
+        {
+            target = GameObject.FindGameObjectWithTag("Player1");
+        }
+
         bulletTraject();
     }
 
     public enum bullet
     {
         bulletCharacMachinGun,
+        bulletEnemyTankBunker,
+        bulletEnemyHomingMissile
     }
 
     public bullet bulletKind;
@@ -47,6 +57,30 @@ public class Bullet : MonoBehaviour
                         Invoke("bulletDestroy", 0.1f);
                     }
 
+                    break;
+                }
+
+            case bullet.bulletEnemyTankBunker:
+                {
+                    float step = GameData.bulletEnemyTankBunkerSpeed * Time.deltaTime;
+
+                    if (Vector3.Distance(transform.position, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = bulletEffect;
+                        Invoke("bulletDestroy", 0.1f);
+                    }
+
+                    break;
+                }
+
+            case bullet.bulletEnemyHomingMissile:  //追踪导弹
+                {
+                    float step = GameData.bulletEnemyTankBunkerSpeed * Time.deltaTime;
+                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
                     break;
                 }
         }
