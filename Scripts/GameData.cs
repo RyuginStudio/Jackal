@@ -16,6 +16,6 @@ public class GameData
     //1.坦克堡垒
     public static int TankBunkerLifeValue = 100;
     public static float TankBunkerAttackRate = 1; //定时器
-    public static float bulletEnemyTankBunkerSpeed = 10;  //坦克堡垒
+    public static float bulletEnemyTankBunkerSpeed = 5;  //坦克堡垒
     public static float bulletEnemyTankBunkerDistance = 5.0f;  //角色机枪射程
 }

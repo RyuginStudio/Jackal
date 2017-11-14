@@ -80,10 +80,10 @@ public class Bullet : MonoBehaviour
                     //子弹未达到射程时，修正attackPos
                     if (Vector3.Distance(attackPos, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance)
                     {
-                        
+                        //未实现
                     }
 
-                    if (Vector3.Distance(transform.position, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance)
+                    if (Vector3.Distance(transform.position, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance && transform.position != attackPos)
                     {
                         transform.position = Vector3.MoveTowards(transform.position, attackPos, step);
                     }
