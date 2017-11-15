@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Vector3 bulletInitPos;
-    public GameObject PrefabBullet;
     public GameObject Shotter;        //发射子弹的人(可以是角色)
     public GameObject target;         //攻击目标
     public static Vector3 attackPos;  //打哪里(子弹发射时为角色的 => 即时位置，并保持不变)
@@ -36,9 +35,9 @@ public class Bullet : MonoBehaviour
         if (bulletKind != bullet.bulletCharacMachinGun)
         {
             target = GameObject.FindGameObjectWithTag("Player1");
+            attackPos = target.transform.position;
         }
 
-        attackPos = target.transform.position;
     }
 
     public enum bullet
@@ -76,18 +75,16 @@ public class Bullet : MonoBehaviour
             case bullet.bulletEnemyTankBunker:
                 {
                     float step = GameData.bulletEnemyTankBunkerSpeed * Time.deltaTime;
+                    Vector3 direction = attackPos - bulletInitPos;
+                    var bulletRay = new Ray2D(bulletInitPos, direction);
+                    Debug.DrawLine(bulletRay.origin, attackPos, Color.red, 0.5f);  //划出射线，在scene视图中能看到由摄像机发射出的射线
+                    //参考：http://www.ceeger.com/forum/read.php?tid=4262 
+                    //Bug解决：Ray的参数是（起始点，方向向量），不是在两点间画一条线
+                    //注意：两点间的方向向量 = 终点 - 起点                        
+                    var targetPos = bulletRay.GetPoint(GameData.bulletEnemyTankBunkerDistance);
+                    transform.position = Vector2.MoveTowards(transform.position, targetPos, step);
 
-                    //子弹未达到射程时，修正attackPos
-                    if (Vector3.Distance(attackPos, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance)
-                    {
-                        //未实现
-                    }
-
-                    if (Vector3.Distance(transform.position, bulletInitPos) < GameData.bulletEnemyTankBunkerDistance && transform.position != attackPos)
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, attackPos, step);
-                    }
-                    else
+                    if (new Vector2(transform.position.x, transform.position.y) == targetPos)
                     {
                         GetComponent<SpriteRenderer>().sprite = bulletEffect;
                         Invoke("bulletDestroy", 0.1f);
@@ -108,6 +105,6 @@ public class Bullet : MonoBehaviour
     void bulletDestroy()  //子弹销毁条件：1.碰撞 2.达到射程
     {
         //Debug.Log("Destroy prefab");
-        Destroy(PrefabBullet);
+        Destroy(transform.gameObject);
     }
 }

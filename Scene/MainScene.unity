@@ -421,6 +421,10 @@ Prefab:
       propertyPath: m_Name
       value: TankBunker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1039635377330914, guid: c39acb37882835f4b98aad792cca3b77, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c39acb37882835f4b98aad792cca3b77, type: 2}
   m_IsPrefabParent: 0
