@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 1081721086}
   - component: {fileID: 1081721087}
   m_Layer: 0
-  m_Name: TankBunkerShoot
+  m_Name: TankBunkerShoot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1001,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4676177622329638, guid: c39acb37882835f4b98aad792cca3b77, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.78
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 4676177622329638, guid: c39acb37882835f4b98aad792cca3b77, type: 2}
       propertyPath: m_LocalPosition.y
