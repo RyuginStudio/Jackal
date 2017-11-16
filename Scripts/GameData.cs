@@ -15,7 +15,7 @@ public class GameData
     //=================================敌人数据=================================//
     //1.坦克堡垒
     public static int TankBunkerLifeValue = 100;
-    public static float TankBunkerAttackRate = 1.5f; //定时器
-    public static float bulletEnemyTankBunkerSpeed = 5;  //坦克堡垒
+    public static float TankBunkerAttackRate = 1.9f; //攻击频率定时器
+    public static float bulletEnemyTankBunkerSpeed = 5;  //子弹速度
     public static float bulletEnemyTankBunkerDistance = 5.0f;  //角色机枪射程
 }
