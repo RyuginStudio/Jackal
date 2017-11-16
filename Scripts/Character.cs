@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     float currentTime;
     float directionUpdate;
     float moveAnimaUpdate;
+    int characLives;
 
     // Use this for initialization
     void Start()
@@ -14,6 +15,8 @@ public class Character : MonoBehaviour
         currentTime = Time.time;
         directionUpdate = currentTime;
         moveAnimaUpdate = currentTime;
+
+        characLives = GameData.CharacterLives;
     }
 
     // Update is called once per frame
@@ -531,5 +534,11 @@ public class Character : MonoBehaviour
         }
 
 
+    }
+
+    void CharacDiedBomb()
+    {
+        --characLives;
+        
     }
 }

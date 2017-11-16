@@ -106,4 +106,23 @@ public class Bullet : MonoBehaviour
         //Debug.Log("Destroy prefab");
         Destroy(transform.gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D other)  //碰撞检测
+    {
+        if (bulletKind == bullet.bulletCharacMachinGun)
+        return;
+        
+        //Debug.Log("bullet collide");
+        switch (other.tag)
+        {
+            case "Player1":
+                {
+                    bulletDestroy();
+                    break;
+                }
+
+            default:
+                break;
+        }
+    }
 }

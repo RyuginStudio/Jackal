@@ -6,6 +6,7 @@ public class TankBunker : Enemy
 {
     private float currentTime;
     private float attackUpdate;
+    public AudioSource TankBunkerShootSE;
     private Vector3 attackPos;  //攻击目标
     public GameObject prefabBulletTankBunker;
 
@@ -38,11 +39,12 @@ public class TankBunker : Enemy
         {
             //Debug.Log("TankBunkerAttack");
             BunkerHeadRotate();
+            TankBunkerShootSE.Play();
 
             attackPos = target.transform.position;            
+            Invoke("attackDetail", 0);
+            Invoke("attackDetail", 0.2f);
             Invoke("attackDetail", 0.4f);
-            Invoke("attackDetail", 0.6f);
-            Invoke("attackDetail", 0.8f);
             attackUpdate = Time.time;
         }
     }
