@@ -6,6 +6,7 @@ public class TankBunker : Enemy
 {
     private float currentTime;
     private float attackUpdate;
+    private Vector3 attackPos;  //攻击目标
     public GameObject prefabBulletTankBunker;
 
 
@@ -37,12 +38,21 @@ public class TankBunker : Enemy
         {
             //Debug.Log("TankBunkerAttack");
             BunkerHeadRotate();
-            attackAnimation();
-            var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(0, 0, 0));
-            bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
-            
+
+            attackPos = target.transform.position;            
+            Invoke("attackDetail", 0.4f);
+            Invoke("attackDetail", 0.6f);
+            Invoke("attackDetail", 0.8f);
             attackUpdate = Time.time;
         }
+    }
+
+    void attackDetail()
+    {
+        attackAnimation();
+        var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(0, 0, 0));
+        bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
+        bulletPrefab.GetComponent<Bullet>().attackPos = this.attackPos;
     }
 
     public override void attackAnimation()
