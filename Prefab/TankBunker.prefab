@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039635377330914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.78, y: -0.77, z: 0}
+  m_LocalPosition: {x: -5.08, y: -0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4987356905077956}
@@ -142,6 +142,7 @@ MonoBehaviour:
   moveSpeed: 0
   target: {fileID: 1467353241257208, guid: 47e68592e3023ce43ae2f2c5a18c2c45, type: 2}
   TankBunkerShootSE: {fileID: 0}
+  TankBunkerBoom: {fileID: 0}
   prefabBulletTankBunker: {fileID: 1397832259149778, guid: 9c1713e0aa44edc4caa87a0dd390d9d3,
     type: 2}
 --- !u!212 &212153927898560150
