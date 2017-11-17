@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameData
 {
     //=================================角色数据=================================//
-    public static int CharacterLives = 5;
+    public static float spawnTime = 2.0f;  //重生时间
+    public static float invincibleTime = 2.0f;  //无敌时间
+    public static int CharacterLives = 4;
     public static float CharacterSpeed = 3;
     public static float TurnSensitivity = 0.05f;  //转向灵敏度
     public static int UpOrDown = 1;  //角色移动动画控制

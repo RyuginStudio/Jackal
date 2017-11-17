@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class AnimationPlayer : MonoBehaviour
 {
+    public string tips = "动画空出几帧，为音效播放完提供时间";
     public List<Sprite> AnimationFrames;
     public int FramesIdx;
     public int RepeatIdx;  //二次循环起始图

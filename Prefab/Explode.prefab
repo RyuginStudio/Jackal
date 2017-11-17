@@ -463,6 +463,22 @@ MonoBehaviour:
   - {fileID: 21300036, guid: c986706dacfaca246b76b55811622bef, type: 3}
   - {fileID: 21300040, guid: c986706dacfaca246b76b55811622bef, type: 3}
   - {fileID: 21300042, guid: c986706dacfaca246b76b55811622bef, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   FramesIdx: 0
   RepeatIdx: 0
   RepeatOrNot: 0

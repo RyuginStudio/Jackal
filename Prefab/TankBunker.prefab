@@ -221,7 +221,7 @@ MonoBehaviour:
   lifeValue: 0
   attackRate: 0
   moveSpeed: 0
-  target: {fileID: 1467353241257208, guid: 47e68592e3023ce43ae2f2c5a18c2c45, type: 2}
+  target: {fileID: 1730397961510536, guid: 84c88f7d2bb960e4db016482fe7e1244, type: 2}
   TankBunkerShootSE: {fileID: 82959873498556570}
   prefabBulletTankBunker: {fileID: 1397832259149778, guid: 9c1713e0aa44edc4caa87a0dd390d9d3,
     type: 2}

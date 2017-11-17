@@ -23,6 +23,7 @@ public class TankBunker : Enemy
     void Update()
     {
         currentTime = Time.time;
+        this.target = GameObject.FindGameObjectWithTag("Player1");
         enemyAttack();
     }
 
@@ -52,7 +53,7 @@ public class TankBunker : Enemy
     void attackDetail()
     {
         attackAnimation();
-        var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(0, 0, 0));
+        var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(Vector3.zero));
         bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
         bulletPrefab.GetComponent<Bullet>().attackPos = this.attackPos;
     }

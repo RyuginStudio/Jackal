@@ -7,7 +7,6 @@ public class Character : MonoBehaviour
     float currentTime;
     float directionUpdate;
     float moveAnimaUpdate;
-    int characLives;
     public GameObject prefabExplode;
 
 
@@ -17,8 +16,6 @@ public class Character : MonoBehaviour
         currentTime = Time.time;
         directionUpdate = currentTime;
         moveAnimaUpdate = currentTime;
-
-        characLives = GameData.CharacterLives;
     }
 
     // Update is called once per frame
@@ -553,8 +550,10 @@ public class Character : MonoBehaviour
 
     void CharacDiedBomb()
     {
-        --characLives;
-        Instantiate(prefabExplode, transform.position, Quaternion.Euler(0, 0, 0));
-        GameObject.Destroy(gameObject); //销毁Jackal
+        --GameControler.getInstance().CharacterLives;
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+        GameObject.Destroy(gameObject.gameObject);  //销毁Jackal
+        GameControler.getInstance().characSpawn(transform.position);
     }
+
 }
