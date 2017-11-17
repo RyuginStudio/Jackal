@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61251123534414966}
   m_Layer: 0
   m_Name: bulletTankBunker
-  m_TagString: Untagged
+  m_TagString: BulletTankBunker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

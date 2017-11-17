@@ -8,6 +8,8 @@ public class Character : MonoBehaviour
     float directionUpdate;
     float moveAnimaUpdate;
     int characLives;
+    public GameObject prefabExplode;
+
 
     // Use this for initialization
     void Start()
@@ -54,11 +56,11 @@ public class Character : MonoBehaviour
         if (horizontal != 0)
         {
             this.transform.position = new Vector2(transform.position.x + horizontal * GameData.CharacterSpeed * Time.deltaTime, transform.position.y);
-        } 
+        }
         if (vertical != 0)
         {
             this.transform.position = new Vector2(transform.position.x, transform.position.y + vertical * GameData.CharacterSpeed * Time.deltaTime);
-        }           
+        }
 
         if (currentTime - directionUpdate > GameData.TurnSensitivity)  //要先转到斜方向，不是立刻转到上、下、左、右
         {
@@ -536,9 +538,23 @@ public class Character : MonoBehaviour
 
     }
 
+    void OnTriggerEnter2D(Collider2D other)  //碰撞检测
+    {
+        switch (other.tag)
+        {
+            case "BulletTankBunker":
+                {
+                    CharacDiedBomb();
+                    break;
+                }
+
+        }
+    }
+
     void CharacDiedBomb()
     {
         --characLives;
-        
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(0, 0, 0));
+        GameObject.Destroy(gameObject); //销毁Jackal
     }
 }

@@ -7,7 +7,6 @@ public class TankBunker : Enemy
     private float currentTime;
     private float attackUpdate;
     public AudioSource TankBunkerShootSE;
-    public AudioSource TankBunkerBoom;
     private Vector3 attackPos;  //攻击目标
     public GameObject prefabBulletTankBunker;
 
