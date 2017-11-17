@@ -35,7 +35,7 @@ public class TankBunker : Enemy
 
     public override void enemyAttack()
     {
-        if (currentTime - attackUpdate > this.attackRate)
+        if (currentTime - attackUpdate > this.attackRate && GameObject.FindGameObjectWithTag("Player1") != null)
         {
             //Debug.Log("TankBunkerAttack");
             BunkerHeadRotate();

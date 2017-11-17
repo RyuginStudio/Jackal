@@ -15,6 +15,7 @@ public class AnimationPlayer : MonoBehaviour
     public int FramesIdx;
     public int RepeatIdx;  //二次循环起始图
     public bool RepeatOrNot;
+    public bool PlayFinished;
     public float ScheduleUpdate;
     public float CurrentTime;
     public float DeltaTime;
@@ -51,10 +52,12 @@ public class AnimationPlayer : MonoBehaviour
             {
                 ++FramesIdx;
             }
-            else if(RepeatOrNot == true)
+            else if (RepeatOrNot == true)
             {
                 FramesIdx = RepeatIdx;
             }
+            else
+                PlayFinished = true;
         }
 
     }

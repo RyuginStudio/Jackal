@@ -76,7 +76,7 @@ public class Bullet : MonoBehaviour
                     float step = GameData.bulletEnemyTankBunkerSpeed * Time.deltaTime;
                     Vector3 direction = attackPos - bulletInitPos;
                     var bulletRay = new Ray2D(bulletInitPos, direction);
-                    Debug.DrawLine(bulletRay.origin, attackPos, Color.red, 0.5f);  //划出射线，在scene视图中能看到由摄像机发射出的射线
+                    Debug.DrawLine(bulletRay.origin, attackPos, Color.red, 0.1f);  //划出射线，在scene视图中能看到由摄像机发射出的射线
                     //参考：http://www.ceeger.com/forum/read.php?tid=4262 
                     //Bug解决：Ray的参数是（起始点，方向向量），不是在两点间画一条线
                     //注意：两点间的方向向量 = 终点 - 起点                        

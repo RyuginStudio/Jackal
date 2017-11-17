@@ -459,18 +459,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationFrames:
-  - {fileID: 21300038, guid: c986706dacfaca246b76b55811622bef, type: 3}
-  - {fileID: 21300038, guid: c986706dacfaca246b76b55811622bef, type: 3}
+  - {fileID: 21300032, guid: c986706dacfaca246b76b55811622bef, type: 3}
+  - {fileID: 21300036, guid: c986706dacfaca246b76b55811622bef, type: 3}
   - {fileID: 21300040, guid: c986706dacfaca246b76b55811622bef, type: 3}
-  - {fileID: 21300040, guid: c986706dacfaca246b76b55811622bef, type: 3}
-  - {fileID: 21300042, guid: c986706dacfaca246b76b55811622bef, type: 3}
   - {fileID: 21300042, guid: c986706dacfaca246b76b55811622bef, type: 3}
   FramesIdx: 0
   RepeatIdx: 0
   RepeatOrNot: 0
+  PlayFinished: 0
   ScheduleUpdate: 0
   CurrentTime: 0
-  DeltaTime: 0
+  DeltaTime: 0.1
   autoPlay: 1
   attackAnimation: 0
   Tag: 
