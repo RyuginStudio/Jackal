@@ -1,6 +1,7 @@
 ﻿//时间：2017年11月19日01:08:19
 //作者：VSZED
 //用法：挂在到子弹预制件上
+//说明：无论是敌人的子弹还是角色子弹 => 统一处理
 
 using System.Collections;
 using System.Collections.Generic;
@@ -127,14 +128,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)  //碰撞检测
     {
-        if (bulletKind == bullet.bulletCharacMachinGun)
-            return;
-
         //Debug.Log("bullet collide");
         switch (other.tag)
         {
             case "Player1":
                 {
+                    if (bulletKind == bullet.bulletCharacMachinGun || bulletKind == bullet.bulletCharacGrenade)
+                        return;
+
                     bulletDestroy();
                     break;
                 }
