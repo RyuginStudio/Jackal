@@ -79,18 +79,12 @@ public class Bullet : MonoBehaviour
             case bullet.bulletCharacGrenade:
                 {
                     //Debug.Log("bulletCharacGrenade");
+                    //算法设计：在小车上绑定一个箭头图片，射线的方向为：箭头精灵坐标-小车精灵坐标
                     float step = GameData.bulletCharacGrenadeSpeed * Time.deltaTime;
-                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(bulletInitPos.x, bulletInitPos.y + GameData.bulletCharacMachinGunDistance), step);
-
-                    //以下值均需调用C#取得小数点后1位的四舍五入
-                    var initY = System.Math.Round(bulletInitPos.y, 1);
-                    var nowY = System.Math.Round(transform.position.y, 1);
-
-                    if (System.Math.Round(nowY - initY, 1) >= GameData.bulletCharacMachinGunDistance)
-                    {
-                        GetComponent<SpriteRenderer>().sprite = bulletEffect;
-                        Invoke("bulletDestroy", 0.1f);
-                    }
+                    var direction = GameObject.Find("DirectionArrow").transform.position - bulletInitPos;  //================================================修改
+                    var shootRay = new Ray2D(bulletInitPos, direction);
+                    var pos = shootRay.GetPoint(GameData.bulletCharacGrenadeDistance);
+                    transform.position = Vector2.MoveTowards(transform.position, pos, step);
 
                     break;
                 }
