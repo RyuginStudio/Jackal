@@ -550,9 +550,8 @@ public class Character : MonoBehaviour
 
     void CharacDiedBomb()
     {
-        --GameControler.getInstance().CharacterLives;
-        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
-        GameObject.Destroy(gameObject.gameObject);  //销毁Jackal
+        GameObject.Destroy(gameObject);  //销毁Jackal
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));       
         GameControler.getInstance().characSpawn(transform.position);
     }
 

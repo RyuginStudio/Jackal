@@ -40,7 +40,7 @@ public class GameControler : MonoBehaviour
     public void characSpawn(Vector3 spawnPoint)
     {
         //Debug.Log("characSpawn");
-        if (CharacterLives >= 0)
+        if (CharacterLives > 0)
         {
             this.spawnPoint = spawnPoint;
             Invoke("InstantiatePrefab", GameData.spawnTime);
@@ -49,6 +49,11 @@ public class GameControler : MonoBehaviour
 
     public void InstantiatePrefab()
     {
-        Instantiate(CharacPrefab, spawnPoint, Quaternion.Euler(Vector3.zero));
+        //加判断预防同时碰撞生成两个预制件，生命减减在这也一样
+        if (GameObject.FindGameObjectWithTag("Player1") == null)
+        {
+            --GameControler.getInstance().CharacterLives;
+            Instantiate(CharacPrefab, spawnPoint, Quaternion.Euler(Vector3.zero));
+        }
     }
 }

@@ -43,9 +43,9 @@ public class TankBunker : Enemy
             TankBunkerShootSE.Play();
 
             attackPos = target.transform.position;            
-            Invoke("attackDetail", 0);
-            Invoke("attackDetail", 0.2f);
-            Invoke("attackDetail", 0.4f);
+            Invoke("attackDetail", 0.1f);
+            Invoke("attackDetail", 0.3f);
+            Invoke("attackDetail", 0.5f);
             attackUpdate = Time.time;
         }
     }
