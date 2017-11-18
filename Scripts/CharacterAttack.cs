@@ -7,12 +7,22 @@ public class CharacterAttack : MonoBehaviour
 
     public AudioSource machinGunEffect;
     public AudioSource fireInTheHole;
+    public AudioSource missileLaunchEffect;
     public GameObject prefabBulletMachinGun;
+    public GameObject prefabBulletGrenade;
+
+    public enum weapons  //技能系武器
+    {
+        grenade,
+        missile
+    }
+
+    public weapons weaponsHold;
 
     // Use this for initialization
     void Start()
     {
-
+        weaponsHold = weapons.grenade;
     }
 
     // Update is called once per frame
@@ -23,17 +33,27 @@ public class CharacterAttack : MonoBehaviour
 
     public void attack()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))  //普攻
         {
             //Debug.Log("machineGun");
             machinGunEffect.Play();
             var bulletPrefab = Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0));
             bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
         }
-        if (Input.GetKeyDown(KeyCode.K))
+
+        if (Input.GetKeyDown(KeyCode.K))  //技能
         {
-            //Debug.Log("FireInTheHole");
-            fireInTheHole.Play();
+            if (weaponsHold == weapons.grenade)
+            {
+                fireInTheHole.Play();
+                var bulletPrefab = Instantiate(prefabBulletGrenade, transform.position, new Quaternion(0, 0, 0, 0));
+                bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
+            }
+            else if (weaponsHold == weapons.missile)
+            {
+                missileLaunchEffect.Play();
+            }
+
         }
     }
 }

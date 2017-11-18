@@ -80,10 +80,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletInitPos: {x: 0, y: 0, z: 0}
   Shotter: {fileID: 0}
-  target: {fileID: 1467353241257208, guid: 47e68592e3023ce43ae2f2c5a18c2c45, type: 2}
+  target: {fileID: 1730397961510536, guid: 84c88f7d2bb960e4db016482fe7e1244, type: 2}
   attackPos: {x: 0, y: 0, z: 0}
   bulletEffect: {fileID: 21300000, guid: 015037fb216af4526b6e9b3fd7360214, type: 3}
-  bulletKind: 1
+  bulletKind: 2
 --- !u!212 &212517639791599152
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -115,7 +115,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 052d5071483e996489c21cb2b6183d03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

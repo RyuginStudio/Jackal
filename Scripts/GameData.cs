@@ -12,7 +12,9 @@ public class GameData
     public static float TurnSensitivity = 0.05f;  //转向灵敏度
     public static int UpOrDown = 1;  //角色移动动画控制
     public static float bulletCharacMachinGunSpeed = 20;  //角色机枪子弹移速
-    public static float bulletCharacMachinGunDistance = 3.5f;  //角色机枪射程
+    public static float bulletCharacMachinGunDistance = 3.8f;  //角色机枪射程
+    public static float bulletCharacGrenadeSpeed = 5;  //角色手榴弹移速
+    public static float bulletCharacGrenadeDistance = 3.5f;  //角色手榴弹射程
 
 
     //=================================敌人数据=================================//
