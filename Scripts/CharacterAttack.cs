@@ -10,6 +10,8 @@ public class CharacterAttack : MonoBehaviour
     public AudioSource missileLaunchEffect;
     public GameObject prefabBulletMachinGun;
     public GameObject prefabBulletGrenade;
+    private float currentTime;
+    private float GrenadeColdDownUpdate;
 
     public enum weapons  //技能系武器
     {
@@ -28,6 +30,7 @@ public class CharacterAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentTime = Time.time;
         attack();
     }
 
@@ -43,11 +46,13 @@ public class CharacterAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))  //技能
         {
-            if (weaponsHold == weapons.grenade)
+            if (weaponsHold == weapons.grenade && currentTime - GrenadeColdDownUpdate >= GameData.GrenadeColdDown)  //攻击CD
             {
+                GrenadeColdDownUpdate = Time.time;
                 fireInTheHole.Play();
                 var bulletPrefab = Instantiate(prefabBulletGrenade, transform.position, new Quaternion(0, 0, 0, 0));
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
+                bulletPrefab.GetComponent<Bullet>().characArrowPos = GameObject.Find("DirectionArrow").transform.position;
             }
             else if (weaponsHold == weapons.missile)
             {

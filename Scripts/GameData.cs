@@ -15,6 +15,7 @@ public class GameData
     public static float bulletCharacMachinGunDistance = 3.8f;  //角色机枪射程
     public static float bulletCharacGrenadeSpeed = 5;  //角色手榴弹移速
     public static float bulletCharacGrenadeDistance = 3.5f;  //角色手榴弹射程
+    public static float GrenadeColdDown = 1.5f;  //手榴弹投掷冷却时间
 
 
     //=================================敌人数据=================================//

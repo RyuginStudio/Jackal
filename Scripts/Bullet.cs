@@ -12,7 +12,8 @@ public class Bullet : MonoBehaviour
     public Vector3 bulletInitPos;
     public GameObject Shotter;        //发射子弹的人(可以是角色)
     public GameObject target;         //攻击目标
-    public Vector3 attackPos;         //通过具体敌人传值
+    public Vector3 attackPos;         //通过具体敌人传值(攻击目标的坐标，并非实时刷新可能是角色几毫秒之前的位置)
+    public Vector3 characArrowPos;    //由CharacAttack传入，角色红色箭头坐标(用于导弹、手雷的向量方向)
     public Sprite bulletEffect;       //子弹爆炸效果
 
 
@@ -82,7 +83,7 @@ public class Bullet : MonoBehaviour
                     //Debug.Log("bulletCharacGrenade");
                     //算法设计：在小车上绑定一个箭头图片，射线的方向为：箭头精灵坐标-小车精灵坐标
                     float step = GameData.bulletCharacGrenadeSpeed * Time.deltaTime;
-                    var direction = GameObject.Find("DirectionArrow").transform.position - bulletInitPos;  //================================================修改
+                    var direction = characArrowPos - bulletInitPos;
                     var shootRay = new Ray2D(bulletInitPos, direction);
                     var pos = shootRay.GetPoint(GameData.bulletCharacGrenadeDistance);
                     transform.position = Vector2.MoveTowards(transform.position, pos, step);
