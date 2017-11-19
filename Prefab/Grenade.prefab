@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 212893906143389236}
   - component: {fileID: 114318078044659578}
   - component: {fileID: 114204737696537512}
+  - component: {fileID: 61112110608914364}
   m_Layer: 0
   m_Name: Grenade
-  m_TagString: Untagged
+  m_TagString: Grenade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,12 +37,37 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977058691350712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.37, y: -2.56, z: 0}
+  m_LocalPosition: {x: -1.4698924, y: -2.7899704, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61112110608914364
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1977058691350712}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00396125, y: 0.0068585873}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0918034, y: 0.09371686}
+  m_EdgeRadius: 0
 --- !u!114 &114204737696537512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,7 +83,10 @@ MonoBehaviour:
   Shotter: {fileID: 1730397961510536, guid: 84c88f7d2bb960e4db016482fe7e1244, type: 2}
   target: {fileID: 0}
   attackPos: {x: 0, y: 0, z: 0}
+  characArrowPos: {x: 0, y: 0, z: 0}
   bulletEffect: {fileID: 0}
+  prefabExplode: {fileID: 1210198421501908, guid: a57b15a784700d34a9ee0378a43f6e8b,
+    type: 2}
   bulletKind: 1
 --- !u!114 &114318078044659578
 MonoBehaviour:

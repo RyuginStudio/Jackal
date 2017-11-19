@@ -545,13 +545,19 @@ public class Character : MonoBehaviour
                     break;
                 }
 
+            case "TankBunker":
+                {
+                    CharacDiedBomb();
+                    break;
+                }
+
         }
     }
 
     void CharacDiedBomb()
     {
         GameObject.Destroy(gameObject);  //销毁Jackal
-        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));       
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
         GameControler.getInstance().characSpawn(transform.position);
     }
 

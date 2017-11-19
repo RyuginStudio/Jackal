@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
     public Vector3 attackPos;         //通过具体敌人传值(攻击目标的坐标，并非实时刷新可能是角色几毫秒之前的位置)
     public Vector3 characArrowPos;    //由CharacAttack传入，角色红色箭头坐标(用于导弹、手雷的向量方向)
     public Sprite bulletEffect;       //子弹爆炸效果
+    public GameObject prefabExplode;  //手榴弹爆炸预制体
 
 
     // Use this for initialization
@@ -88,6 +89,12 @@ public class Bullet : MonoBehaviour
                     var pos = shootRay.GetPoint(GameData.bulletCharacGrenadeDistance);
                     transform.position = Vector2.MoveTowards(transform.position, pos, step);
 
+                    if (new Vector2(transform.position.x, transform.position.y) == pos)
+                    {
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                        bulletDestroy();
+                    }
+
                     break;
                 }
 
@@ -127,7 +134,9 @@ public class Bullet : MonoBehaviour
         Destroy(transform.gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)  //碰撞检测
+
+    //子弹碰撞检测汇总：只负责子弹销毁，具体碰撞效果由各个碰撞物体的脚本分别处理
+    void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("bullet collide");
         switch (other.tag)
@@ -137,6 +146,18 @@ public class Bullet : MonoBehaviour
                     if (bulletKind == bullet.bulletCharacMachinGun || bulletKind == bullet.bulletCharacGrenade)
                         return;
 
+                    bulletDestroy();
+                    break;
+                }
+
+            case "TankBunker":
+                {
+                    if (bulletKind == bullet.bulletEnemyTankBunker)
+                        return;
+
+                    if (bulletKind == bullet.bulletCharacGrenade)
+                    Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                    
                     bulletDestroy();
                     break;
                 }

@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacPrefab: {fileID: 1730397961510536, guid: 84c88f7d2bb960e4db016482fe7e1244,
     type: 2}
+  CharacterLives: 0

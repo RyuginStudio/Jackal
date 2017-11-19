@@ -6,7 +6,9 @@ public class TankBunker : Enemy
 {
     private float currentTime;
     private float attackUpdate;
+    public GameObject prefabExplode;  //死亡爆炸预制件
     public AudioSource TankBunkerShootSE;
+    public AudioSource[] BeAttackedByBulletSE;
     private Vector3 attackPos;  //攻击目标
     public GameObject prefabBulletTankBunker;
 
@@ -42,7 +44,7 @@ public class TankBunker : Enemy
             BunkerHeadRotate();
             TankBunkerShootSE.Play();
 
-            attackPos = target.transform.position;            
+            attackPos = target.transform.position;
             Invoke("attackDetail", 0.1f);
             Invoke("attackDetail", 0.3f);
             Invoke("attackDetail", 0.5f);
@@ -94,6 +96,49 @@ public class TankBunker : Enemy
         transform.Rotate(0, 0, 180 - angle);
     }
 
+    void OnTriggerEnter2D(Collider2D other)  //碰撞检测
+    {
+        switch (other.tag)
+        {
+            case "BulletMachinGun":
+                {
+                    //只针对角色的【机枪】进行损血处理：
 
+                    lifeValue -= GameData.bulletCharacMachinGunDemage;
+
+                    if (lifeValue <= 0)
+                    {
+                        DiedBomb();
+                    }
+                    else
+                    {
+                        //音效随机
+                        var randValue = Random.Range(0, 3);
+                        BeAttackedByBulletSE[randValue].Play();
+                    }
+
+                    break;
+                }
+
+            case "Grenade":
+                {
+                    DiedBomb();
+                    break;
+                }
+
+            case "Player1":
+                {
+                    DiedBomb();
+                    break;
+                }
+
+        }
+    }
+
+    void DiedBomb()
+    {
+        GameObject.Destroy(gameObject);  //销毁Jackal
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+    }
 
 }
