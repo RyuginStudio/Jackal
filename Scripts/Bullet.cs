@@ -182,6 +182,15 @@ public class Bullet : MonoBehaviour
                     break;
                 }
 
+            case "Obstacle":  //阻挡除手榴弹意外子弹的障碍
+                {
+                    if (bulletKind == bullet.bulletCharacGrenade)
+                        return;
+
+                    bulletDestroy();
+                    break;
+                }
+
             default:
                 break;
         }
