@@ -395,6 +395,8 @@ MonoBehaviour:
     type: 2}
   prefabBulletGrenade: {fileID: 1977058691350712, guid: 29291a5772bad5447b774525cea859d6,
     type: 2}
+  prefabBulletMissile: {fileID: 1978996774663418, guid: f44d8e2b3611fa74ca0f83c22bbc58ce,
+    type: 2}
   weaponsHold: 0
 --- !u!212 &212123866821281726
 SpriteRenderer:

@@ -50,6 +50,7 @@ public class Bullet : MonoBehaviour
     {
         bulletCharacMachinGun,
         bulletCharacGrenade,
+        bulletCharacMissile,
         bulletEnemyTankBunker,
         bulletEnemyHomingMissile
     }
@@ -87,6 +88,25 @@ public class Bullet : MonoBehaviour
                     var direction = characArrowPos - bulletInitPos;
                     var shootRay = new Ray2D(bulletInitPos, direction);
                     var pos = shootRay.GetPoint(GameData.bulletCharacGrenadeDistance);
+                    transform.position = Vector2.MoveTowards(transform.position, pos, step);
+
+                    if (new Vector2(transform.position.x, transform.position.y) == pos)
+                    {
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                        bulletDestroy();
+                    }
+
+                    break;
+                }
+
+            case bullet.bulletCharacMissile:
+                {
+                    //Debug.Log("bulletCharacGrenade");
+                    //算法设计：在小车上绑定一个箭头图片，射线的方向为：箭头精灵坐标-小车精灵坐标
+                    float step = GameData.bulletCharacMissileSpeed * Time.deltaTime;
+                    var direction = characArrowPos - bulletInitPos;
+                    var shootRay = new Ray2D(bulletInitPos, direction);
+                    var pos = shootRay.GetPoint(GameData.bulletCharacMissileDistance);
                     transform.position = Vector2.MoveTowards(transform.position, pos, step);
 
                     if (new Vector2(transform.position.x, transform.position.y) == pos)
@@ -143,7 +163,7 @@ public class Bullet : MonoBehaviour
         {
             case "Player1":
                 {
-                    if (bulletKind == bullet.bulletCharacMachinGun || bulletKind == bullet.bulletCharacGrenade)
+                    if (bulletKind == bullet.bulletCharacMachinGun || bulletKind == bullet.bulletCharacGrenade || bulletKind == bullet.bulletCharacMissile)
                         return;
 
                     bulletDestroy();
@@ -155,9 +175,9 @@ public class Bullet : MonoBehaviour
                     if (bulletKind == bullet.bulletEnemyTankBunker)
                         return;
 
-                    if (bulletKind == bullet.bulletCharacGrenade)
-                    Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
-                    
+                    if (bulletKind == bullet.bulletCharacGrenade || bulletKind == bullet.bulletCharacMissile)
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+
                     bulletDestroy();
                     break;
                 }

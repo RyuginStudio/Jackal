@@ -10,8 +10,10 @@ public class CharacterAttack : MonoBehaviour
     public AudioSource missileLaunchEffect;
     public GameObject prefabBulletMachinGun;
     public GameObject prefabBulletGrenade;
+    public GameObject prefabBulletMissile;
     private float currentTime;
     private float GrenadeColdDownUpdate;
+    private float missileColdDownUpdate;
 
     public enum weapons  //技能系武器
     {
@@ -54,9 +56,13 @@ public class CharacterAttack : MonoBehaviour
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
                 bulletPrefab.GetComponent<Bullet>().characArrowPos = GameObject.Find("DirectionArrow").transform.position;
             }
-            else if (weaponsHold == weapons.missile)
+            else if (weaponsHold == weapons.missile && currentTime - missileColdDownUpdate >= GameData.CharacMissileColdDown)
             {
+                missileColdDownUpdate = Time.time;
                 missileLaunchEffect.Play();
+                var bulletPrefab = Instantiate(prefabBulletMissile, transform.position, this.transform.rotation);
+                bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
+                bulletPrefab.GetComponent<Bullet>().characArrowPos = GameObject.Find("DirectionArrow").transform.position;
             }
 
         }

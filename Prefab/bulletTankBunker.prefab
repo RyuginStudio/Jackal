@@ -85,7 +85,7 @@ MonoBehaviour:
   characArrowPos: {x: 0, y: 0, z: 0}
   bulletEffect: {fileID: 21300000, guid: 015037fb216af4526b6e9b3fd7360214, type: 3}
   prefabExplode: {fileID: 0}
-  bulletKind: 2
+  bulletKind: 3
 --- !u!212 &212517639791599152
 SpriteRenderer:
   m_ObjectHideFlags: 1

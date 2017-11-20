@@ -126,6 +126,12 @@ public class TankBunker : Enemy
                     break;
                 }
 
+            case "BulletCharacMissile":
+                {
+                    DiedBomb();
+                    break;
+                }
+
             case "Player1":
                 {
                     DiedBomb();
