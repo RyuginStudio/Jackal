@@ -8,6 +8,7 @@ public class GameData
     public static float spawnTime = 2.0f;  //重生时间
     public static float invincibleTime = 2.0f;  //无敌时间
     public static int CharacterLives = 4;
+    public static int MaxPassengerHole = 10;  //最大载客量
     public static float CharacterSpeed = 3;
     public static float TurnSensitivity = 0.05f;  //转向灵敏度
     public static int UpOrDown = 1;  //角色移动动画控制

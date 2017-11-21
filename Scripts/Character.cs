@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     float currentTime;
     float directionUpdate;
     float moveAnimaUpdate;
+    public int PassengerHole;  //当前载客量
     public GameObject prefabExplode;
 
 

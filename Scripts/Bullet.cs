@@ -148,13 +148,6 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void bulletDestroy()  //子弹销毁条件：1.碰撞 2.达到射程
-    {
-        //Debug.Log("Destroy prefab");
-        Destroy(transform.gameObject);
-    }
-
-
     //子弹碰撞检测汇总：只负责子弹销毁，具体碰撞效果由各个碰撞物体的脚本分别处理
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -182,17 +175,43 @@ public class Bullet : MonoBehaviour
                     break;
                 }
 
-            case "Obstacle":  //阻挡除手榴弹意外子弹的障碍
+            case "Obstacle":  //阻挡除手榴弹意外子弹的障碍物
                 {
-                    if (bulletKind == bullet.bulletCharacGrenade)
-                        return;
+                    switch (bulletKind)
+                    {
+                        case bullet.bulletCharacMachinGun:
+                            {
+                                bulletDestroy();
+                                break;
+                            }
+                        case bullet.bulletCharacGrenade:
+                            {
+                                break;  //手雷越垒效果
+                            }
+                        case bullet.bulletCharacMissile:
+                            {
+                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                                bulletDestroy();
+                                break;
+                            }
+                        case bullet.bulletEnemyTankBunker:
+                            {
+                                bulletDestroy();
+                                break;
+                            }
+                    }
 
-                    bulletDestroy();
                     break;
                 }
 
             default:
                 break;
         }
+    }
+
+    void bulletDestroy()  //子弹销毁条件：1.碰撞 2.达到射程
+    {
+        //Debug.Log("Destroy prefab");
+        Destroy(transform.gameObject);
     }
 }
