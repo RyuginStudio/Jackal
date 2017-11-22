@@ -162,6 +162,14 @@ public class Bullet : MonoBehaviour
                     bulletDestroy();
                     break;
                 }
+            case "Comrade":  //允许误伤
+                {
+                    if (bulletKind == bullet.bulletCharacGrenade || bulletKind == bullet.bulletCharacMissile)
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+
+                    bulletDestroy();
+                    break;
+                }
 
             case "TankBunker":
                 {

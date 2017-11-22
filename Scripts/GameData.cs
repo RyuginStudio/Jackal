@@ -32,4 +32,10 @@ public class GameData
     public static float TankBunkerAttackRate = 1.9f; //攻击频率定时器
     public static float bulletEnemyTankBunkerSpeed = 5;  //子弹速度
     public static float bulletEnemyTankBunkerDistance = 5.0f;  //角色机枪射程
+
+
+
+    //=================================中立数据=================================//
+    //1.战友（小人）
+    public static int comradeSpeed = 1;
 }
