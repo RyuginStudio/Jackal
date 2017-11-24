@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
+    //单例模式
+    private static CharacterAttack instance;
+    static public CharacterAttack getInstance()
+    {
+        return instance;
+    }
 
+    //资源加载
     public AudioSource machinGunEffect;
     public AudioSource fireInTheHole;
     public AudioSource missileLaunchEffect;
@@ -26,6 +33,7 @@ public class CharacterAttack : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        instance = this;
         weaponsHold = weapons.grenade;
     }
 
@@ -66,5 +74,10 @@ public class CharacterAttack : MonoBehaviour
             }
 
         }
+    }
+
+    public void firePromote()  //火力提升
+    {
+        weaponsHold = weapons.missile;
     }
 }
