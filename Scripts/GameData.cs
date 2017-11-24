@@ -6,7 +6,7 @@ public class GameData
 {
     //=================================角色数据=================================//
     public static float spawnTime = 2.0f;  //重生时间
-    public static float invincibleTime = 2.0f;  //无敌时间
+    public static float CharacterInvincibleTime = 2.0f;  //无敌时间
     public static int CharacterLives = 4;
     public static int MaxPassengerHole = 10;  //最大载客量
     public static float CharacterSpeed = 3;
@@ -38,4 +38,5 @@ public class GameData
     //=================================中立数据=================================//
     //1.战友：可被角色（误伤）和敌人杀死
     public static int comradeSpeed = 1;
+    public static float comradeInvincibleTime = 1.5f;  //无敌时间
 }

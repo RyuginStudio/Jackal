@@ -10,6 +10,7 @@ public class Comrade : MonoBehaviour {
     public AudioSource[] diedEffect; //战友死亡音效
     public AudioSource normalComradeEffect; //普通战友上车声音（只有可升级战友响应）
     private float swapStatusUpdate; //状态转换定时器
+    private float invincibleUpdate; //无敌定时器(刚生成时无敌状态)
     private float currentTime;
 
     public enum status {
@@ -26,16 +27,29 @@ public class Comrade : MonoBehaviour {
     }
     public direction ComradeDirec;
 
+    void init () //初始化
+    {
+        invincibleOrNot ();
+        //需要在具体预制体上操作(战友出生时状态)
+        // ComradeStatus = status.move;
+        // ComradeDirec = direction.down;
+        animationPlay ();
+    }
+
     // Use this for initialization
     void Start () {
-        ComradeStatus = status.idle;
+        swapStatusUpdate = Time.time;
         currentTime = Time.time;
+        invincibleUpdate = Time.time;
+
+        init ();
     }
 
     // Update is called once per frame
     void Update () {
         currentTime = Time.time;
 
+        invincibleOrNot ();
         changeStatus ();
         move ();
         blinkAnim ();
@@ -45,6 +59,11 @@ public class Comrade : MonoBehaviour {
         //Debug.Log("contact with");
         switch (other.tag) //允许误伤
         {
+            case "Player1":
+                {
+                    getInCar ();
+                    break;
+                }
             case "Explode":
                 {
                     die ();
@@ -200,26 +219,30 @@ public class Comrade : MonoBehaviour {
     }
 
     public void die () {
-        Destroy (GetComponent<SpriteRenderer> ());
-        Destroy (GetComponent<Rigidbody2D> ());
-        Destroy (GetComponent<Collider2D> ());
-        Destroy (this);
+        if (!invincibleOrNot ()) {
+            Destroy (GetComponent<SpriteRenderer> ());
+            Destroy (GetComponent<Rigidbody2D> ());
+            Destroy (GetComponent<Collider2D> ());
+            Destroy (this);
 
-        foreach (var item in GetComponents<AnimationPlayer> ())
-            Destroy (item);
+            foreach (var item in GetComponents<AnimationPlayer> ())
+                Destroy (item);
 
-        diedEffect[Random.Range (0, 5)].Play ();
-        Destroy (gameObject, 1.5f);
+            diedEffect[Random.Range (0, 5)].Play ();
+            Destroy (gameObject, 1.5f);
+        }
+
     }
 
     public void getInCar () //上车
     {
         if (isPromoteComrade) {
             comradeEffect[Random.Range (0, 5)].Play ();
-            CharacterAttack.getInstance().firePromote();
+            promoteEffect.Play ();
+            CharacterAttack.getInstance ().firePromote ();
+        } else {
+            normalComradeEffect.Play ();
         }
-
-        normalComradeEffect.Play ();
 
         Destroy (GetComponent<SpriteRenderer> ());
         Destroy (GetComponent<Rigidbody2D> ());
@@ -248,5 +271,15 @@ public class Comrade : MonoBehaviour {
             GetComponent<SpriteRenderer> ().sprite = comradePics[pic_idx];
         }
 
+    }
+
+    bool invincibleOrNot () {
+        if (currentTime - invincibleUpdate > GameData.comradeInvincibleTime) {
+            GetComponent<Collider2D> ().isTrigger = false;
+            return false;
+        } else {
+            GetComponent<Collider2D> ().isTrigger = true;
+            return true;
+        }
     }
 }
