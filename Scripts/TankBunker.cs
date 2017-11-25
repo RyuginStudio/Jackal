@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankBunker : Enemy {
+public class TankBunker : Enemy
+{
     private float currentTime;
     private float attackUpdate;
     public GameObject prefabExplode; //死亡爆炸预制件
@@ -12,53 +13,60 @@ public class TankBunker : Enemy {
     public GameObject prefabBulletTankBunker;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         currentTime = Time.time;
         attackUpdate = Time.time;
-        init ();
+        init();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         currentTime = Time.time;
-        this.target = GameObject.FindGameObjectWithTag ("Player1");
-        enemyAttack ();
+        this.target = GameObject.FindGameObjectWithTag("Player1");
+        enemyAttack();
     }
 
-    void init () {
+    void init()
+    {
         this.lifeValue = GameData.TankBunkerLifeValue;
         this.attackRate = GameData.TankBunkerAttackRate;
-        this.target = GameObject.FindGameObjectWithTag ("Player1");
+        this.target = GameObject.FindGameObjectWithTag("Player1");
     }
 
-    public override void enemyAttack () {
-        if (currentTime - attackUpdate > this.attackRate && GameObject.FindGameObjectWithTag ("Player1") != null) {
+    public override void enemyAttack()
+    {
+        if (currentTime - attackUpdate > this.attackRate && GameObject.FindGameObjectWithTag("Player1") != null)
+        {
             //Debug.Log("TankBunkerAttack");
-            BunkerHeadRotate ();
-            TankBunkerShootSE.Play ();
+            BunkerHeadRotate();
+            TankBunkerShootSE.Play();
 
             attackPos = target.transform.position;
-            Invoke ("attackDetail", 0.1f);
-            Invoke ("attackDetail", 0.3f);
-            Invoke ("attackDetail", 0.5f);
+            Invoke("attackDetail", 0.1f);
+            Invoke("attackDetail", 0.3f);
+            Invoke("attackDetail", 0.5f);
             attackUpdate = Time.time;
         }
     }
 
-    void attackDetail () {
-        attackAnimation ();
-        var bulletPrefab = Instantiate (prefabBulletTankBunker, transform.position, Quaternion.Euler (Vector3.zero));
-        bulletPrefab.GetComponent<Bullet> ().Shotter = transform.gameObject; //通过脚本获取物体
-        bulletPrefab.GetComponent<Bullet> ().attackPos = this.attackPos;
+    void attackDetail()
+    {
+        attackAnimation();
+        var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(Vector3.zero));
+        bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject; //通过脚本获取物体
+        bulletPrefab.GetComponent<Bullet>().attackPos = this.attackPos;
     }
 
-    public override void attackAnimation () {
+    public override void attackAnimation()
+    {
         //炮塔开火摇摆
         //Debug.Log("TankBunkerAttackAnimation");
 
     }
 
-    void BunkerHeadRotate () //炮塔转至目标
+    void BunkerHeadRotate() //炮塔转至目标
     {
         //方案1：三角函数（因为诸多缺点，已经被迭代）
         //参考：https://jingyan.baidu.com/album/73c3ce280bb9f4e50343d9d1.html?picindex=1
@@ -82,26 +90,30 @@ public class TankBunker : Enemy {
         //API来源：https://docs.unity3d.com/ScriptReference/Mathf.Atan2.html
         //社区来源：https://forum.unity.com/threads/2d-lookat.99708/ 最后一个回答
 
-        Vector3 relative = transform.InverseTransformPoint (target.transform.position);
-        float angle = Mathf.Atan2 (relative.x, relative.y) * Mathf.Rad2Deg;
-        transform.Rotate (0, 0, 180 - angle);
+        Vector3 relative = transform.InverseTransformPoint(target.transform.position);
+        float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
+        transform.Rotate(0, 0, 180 - angle);
     }
 
-    void OnTriggerEnter2D (Collider2D other) //碰撞检测
+    void OnTriggerEnter2D(Collider2D other) //碰撞检测
     {
-        switch (other.tag) {
+        switch (other.tag)
+        {
             case "BulletMachinGun":
                 {
                     //只针对角色的【机枪】进行损血处理：
 
                     lifeValue -= GameData.bulletCharacMachinGunDemage;
 
-                    if (lifeValue <= 0) {
-                        DiedBomb ();
-                    } else {
+                    if (lifeValue <= 0)
+                    {
+                        DiedBomb();
+                    }
+                    else
+                    {
                         //音效随机
-                        var randValue = Random.Range (0, 3);
-                        BeAttackedByBulletSE[randValue].Play ();
+                        var randValue = Random.Range(0, 3);
+                        BeAttackedByBulletSE[randValue].Play();
                     }
 
                     break;
@@ -109,32 +121,35 @@ public class TankBunker : Enemy {
 
             case "Grenade":
                 {
-                    DiedBomb ();
+                    DiedBomb();
                     break;
                 }
 
             case "BulletCharacMissile":
                 {
-                    DiedBomb ();
+                    DiedBomb();
                     break;
                 }
 
         }
     }
 
-    void OnCollisionEnter2D (Collision2D collisionInfo) {
-        switch (collisionInfo.gameObject.tag) {
+    void OnCollisionEnter2D(Collision2D collisionInfo)
+    {
+        switch (collisionInfo.gameObject.tag)
+        {
             case "Player1":
                 {
-                    DiedBomb ();
+                    DiedBomb();
                     break;
                 }
         }
     }
 
-    void DiedBomb () {
-        GameObject.Destroy (gameObject); //销毁Jackal
-        Instantiate (prefabExplode, transform.position, Quaternion.Euler (Vector3.zero));
+    void DiedBomb()
+    {
+        GameObject.Destroy(gameObject); //销毁Jackal
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
     }
 
 }

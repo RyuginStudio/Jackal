@@ -35,12 +35,12 @@ public class GameData
     public static float bulletEnemyTankBunkerSpeed = 5;  //子弹速度
     public static float bulletEnemyTankBunkerDistance = 5.0f;  //射程
     //2.敌人小兵
-    public static float soliderSpeed = 1;
-    public static float soliderAttackRate = 1;  //攻击频率
+    public static float soliderSpeed = 0.8f;
+    public static float soliderAttackRate = 1.5f;  //攻击频率
     public static float bulletEnemySoliderSpeed = 3;  //子弹速度
-    public static float bulletEnemySoliderDistance = 3.0f;  //射程
+    public static float bulletEnemySoliderDistance = 2.0f;  //射程
 
-    
+
 
 
 

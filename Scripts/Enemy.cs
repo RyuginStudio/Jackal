@@ -20,26 +20,26 @@ public class Enemy : MonoBehaviour
     public int lifeValue;
     public float attackRate;
     public int moveSpeed;
-	public GameObject target;
+    public GameObject target;
 
-	virtual public void enemyAttack()
-	{
+    virtual public void enemyAttack()
+    {
 
-	}
+    }
 
-	virtual public void attackAnimation()
-	{
+    virtual public void attackAnimation()
+    {
 
-	}
+    }
 
-	virtual public void move()
-	{
+    virtual public void move()
+    {
 
-	}
+    }
 
-	virtual public void moveAnimation()
-	{
+    virtual public void moveAnimation()
+    {
 
-	}
+    }
 
 }

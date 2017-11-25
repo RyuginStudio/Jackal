@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab97aa77560b4710a59d51a2769411c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerHole: 0
   prefabExplode: {fileID: 1210198421501908, guid: a57b15a784700d34a9ee0378a43f6e8b,
     type: 2}
   CharacterStatus: 0
@@ -429,7 +430,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300002, guid: 74b2c376e59174612af4ee5e2845a141, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
