@@ -86,7 +86,7 @@ public class Comrade : MonoBehaviour
                     die();
                     break;
                 }
-            case "bulletCharacMissile":
+            case "BulletCharacMissile":
                 {
                     die();
                     break;
