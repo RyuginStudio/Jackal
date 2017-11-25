@@ -2,38 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
-{
+public class Character : MonoBehaviour {
     float currentTime;
     float directionUpdate;
     float moveAnimaUpdate;
-    public int PassengerHole;  //当前载客量
+    public int PassengerHole; //当前载客量
     public GameObject prefabExplode;
 
-
     // Use this for initialization
-    void Start()
-    {
+    void Start () {
         currentTime = Time.time;
         directionUpdate = currentTime;
         moveAnimaUpdate = currentTime;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update () {
         currentTime = Time.time;
-        CharacterMove();
+        CharacterMove ();
     }
 
-    public enum Status
-    {
+    public enum Status {
         idle,
         move,
     }
     public Status CharacterStatus;
 
-    public enum Direction  //八方向
+    public enum Direction //八方向
     {
         up,
         down,
@@ -46,57 +41,51 @@ public class Character : MonoBehaviour
     }
     public Direction CharacterDirection;
 
-    void CharacterMove()
-    {
-        var horizontal = Input.GetAxisRaw("Horizontal");
-        var vertical = Input.GetAxisRaw("Vertical");
+    void CharacterMove () {
+        var horizontal = Input.GetAxisRaw ("Horizontal");
+        var vertical = Input.GetAxisRaw ("Vertical");
 
-        if (horizontal != 0)
-        {
-            this.transform.position = new Vector2(transform.position.x + horizontal * GameData.CharacterSpeed * Time.deltaTime, transform.position.y);
+        if (horizontal != 0) {
+            this.transform.position = new Vector2 (transform.position.x + horizontal * GameData.CharacterSpeed * Time.deltaTime, transform.position.y);
         }
-        if (vertical != 0)
-        {
-            this.transform.position = new Vector2(transform.position.x, transform.position.y + vertical * GameData.CharacterSpeed * Time.deltaTime);
+        if (vertical != 0) {
+            this.transform.position = new Vector2 (transform.position.x, transform.position.y + vertical * GameData.CharacterSpeed * Time.deltaTime);
         }
 
-        if (currentTime - directionUpdate > GameData.TurnSensitivity)  //要先转到斜方向，不是立刻转到上、下、左、右
+        if (currentTime - directionUpdate > GameData.TurnSensitivity) //要先转到斜方向，不是立刻转到上、下、左、右
         {
             directionUpdate = currentTime;
-            CharacDirectControl(horizontal, vertical);
-            CharacDirectAnima();
+            CharacDirectControl (horizontal, vertical);
+            CharacDirectAnima ();
         }
 
-        if (CharacterStatus == Status.move && currentTime - moveAnimaUpdate > 0.05f)
-        {
+        if (CharacterStatus == Status.move && currentTime - moveAnimaUpdate > 0.05f) {
             moveAnimaUpdate = Time.time;
-            CharacMoveAnima();
+            CharacMoveAnima ();
         }
 
     }
 
-    void CharacMoveAnima()  //移动动画
+    void CharacMoveAnima () //移动动画
     {
         GameData.UpOrDown *= -1;
         var pos = this.transform.position;
 
         if (CharacterDirection == Direction.up || CharacterDirection == Direction.down) //上下要明显
         {
-            this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.055f, pos.z);
+            this.transform.position = new Vector3 (pos.x, pos.y += GameData.UpOrDown * 0.055f, pos.z);
             return;
         }
 
-        this.transform.position = new Vector3(pos.x, pos.y += GameData.UpOrDown * 0.05f, pos.z);
+        this.transform.position = new Vector3 (pos.x, pos.y += GameData.UpOrDown * 0.05f, pos.z);
     }
 
-    void CharacDirectControl(float x, float y)  //方向控制器(很奇葩的操控)
+    void CharacDirectControl (float x, float y) //方向控制器(很奇葩的操控)
     {
-        if (x == 1 && y == 0)
-        {
+        if (x == 1 && y == 0) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.rightUp;
@@ -138,13 +127,10 @@ public class Character : MonoBehaviour
                         break;
                     }
             }
-        }
-        else if (x == -1 && y == 0)
-        {
+        } else if (x == -1 && y == 0) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.leftUp;
@@ -188,20 +174,17 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (y == 1 && x == 0)
-        {
+        if (y == 1 && x == 0) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.up;
                         break;
                     }
                 case Direction.down:
-                    {
-                        ;
+                    {;
                         CharacterDirection = Direction.leftDown;
                         break;
                     }
@@ -236,13 +219,10 @@ public class Character : MonoBehaviour
                         break;
                     }
             }
-        }
-        else if (y == -1 && x == 0)
-        {
+        } else if (y == -1 && x == 0) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.rightUp;
@@ -286,12 +266,10 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (x == 1 && y == 1)
-        {
+        if (x == 1 && y == 1) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.rightUp;
@@ -333,13 +311,10 @@ public class Character : MonoBehaviour
                         break;
                     }
             }
-        }
-        else if (x == 1 && y == -1)
-        {
+        } else if (x == 1 && y == -1) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.rightUp;
@@ -383,12 +358,10 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (x == -1 && y == 1)
-        {
+        if (x == -1 && y == 1) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.leftUp;
@@ -430,13 +403,10 @@ public class Character : MonoBehaviour
                         break;
                     }
             }
-        }
-        else if (x == -1 && y == -1)
-        {
+        } else if (x == -1 && y == -1) {
             CharacterStatus = Status.move;
 
-            switch (CharacterDirection)
-            {
+            switch (CharacterDirection) {
                 case Direction.up:
                     {
                         CharacterDirection = Direction.leftUp;
@@ -480,86 +450,91 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (x == 0 && y == 0)
-        {
+        if (x == 0 && y == 0) {
             CharacterStatus = Status.idle;
         }
     }
 
-    void CharacDirectAnima()  //转向动画
+    void CharacDirectAnima () //转向动画
     {
-        switch (CharacterDirection)
-        {
+        switch (CharacterDirection) {
             case Direction.up:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    this.transform.rotation = Quaternion.Euler (0, 0, 0);
                     break;
                 }
             case Direction.down:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, 180);
+                    this.transform.rotation = Quaternion.Euler (0, 0, 180);
                     break;
                 }
             case Direction.left:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    this.transform.rotation = Quaternion.Euler (0, 0, 90);
                     break;
                 }
             case Direction.right:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    this.transform.rotation = Quaternion.Euler (0, 0, -90);
                     break;
                 }
             case Direction.leftUp:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, 45);
+                    this.transform.rotation = Quaternion.Euler (0, 0, 45);
                     break;
                 }
             case Direction.leftDown:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, 135);
+                    this.transform.rotation = Quaternion.Euler (0, 0, 135);
                     break;
                 }
             case Direction.rightUp:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, -45);
+                    this.transform.rotation = Quaternion.Euler (0, 0, -45);
                     break;
                 }
             case Direction.rightDown:
                 {
-                    this.transform.rotation = Quaternion.Euler(0, 0, -135);
+                    this.transform.rotation = Quaternion.Euler (0, 0, -135);
                     break;
                 }
 
         }
 
-
     }
 
-    void OnTriggerEnter2D(Collider2D other)  //碰撞检测
+    void OnTriggerEnter2D (Collider2D other) //碰撞检测
     {
-        switch (other.tag)
-        {
+        switch (other.tag) {
             case "BulletTankBunker":
                 {
-                    CharacDiedBomb();
+                    CharacDiedBomb ();
                     break;
                 }
 
-            case "TankBunker":
+            case "BulletSolider":
                 {
-                    CharacDiedBomb();
+                    CharacDiedBomb ();
                     break;
                 }
 
         }
     }
 
-    void CharacDiedBomb()
-    {
-        GameObject.Destroy(gameObject);  //销毁Jackal
-        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
-        GameControler.getInstance().characSpawn(transform.position);
+    void OnCollisionEnter2D (Collision2D collisionInfo) {
+        switch (collisionInfo.gameObject.tag) {
+            case "TankBunker":
+                {
+                    CharacDiedBomb ();
+                    break;
+                }
+        }
+    }
+
+    void CharacDiedBomb () {
+        GameObject.Destroy (gameObject); //销毁Jackal
+        Instantiate (prefabExplode, transform.position, Quaternion.Euler (Vector3.zero));
+        GameControler.getInstance ().characSpawn (transform.position);
     }
 
 }

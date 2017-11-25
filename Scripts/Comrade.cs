@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Comrade : MonoBehaviour {
     public Sprite[] comradePics;
+    public Sprite diePic; //死亡图片
     public bool isPromoteComrade; //可使武器升级的战友
     public AudioSource promoteEffect; //武器升级音效（只有可升级战友响应）
     public AudioSource[] comradeEffect; //战友上车语音（只有可升级战友响应）
@@ -79,17 +80,17 @@ public class Comrade : MonoBehaviour {
                     die ();
                     break;
                 }
-            case "TankBunker":
-                {
-                    die ();
-                    break;
-                }
             case "bulletCharacMissile":
                 {
                     die ();
                     break;
                 }
             case "Grenade":
+                {
+                    die ();
+                    break;
+                }
+            case "BulletSolider":
                 {
                     die ();
                     break;
@@ -104,6 +105,16 @@ public class Comrade : MonoBehaviour {
             case "Player1":
                 {
                     getInCar ();
+                    break;
+                }
+            case "EnemySolider":
+                {
+                    die ();
+                    break;
+                }
+            case "TankBunker":
+                {
+                    die ();
                     break;
                 }
         }
@@ -220,7 +231,7 @@ public class Comrade : MonoBehaviour {
 
     public void die () {
         if (!invincibleOrNot ()) {
-            Destroy (GetComponent<SpriteRenderer> ());
+            GetComponent<SpriteRenderer> ().sprite = diePic;
             Destroy (GetComponent<Rigidbody2D> ());
             Destroy (GetComponent<Collider2D> ());
             Destroy (this);

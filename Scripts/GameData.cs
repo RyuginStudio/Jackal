@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//后期放入config配置信息里
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,12 +33,19 @@ public class GameData
     public static int TankBunkerLifeValue = 100;
     public static float TankBunkerAttackRate = 1.9f; //攻击频率定时器
     public static float bulletEnemyTankBunkerSpeed = 5;  //子弹速度
-    public static float bulletEnemyTankBunkerDistance = 5.0f;  //角色机枪射程
+    public static float bulletEnemyTankBunkerDistance = 5.0f;  //射程
+    //2.敌人小兵
+    public static float soliderSpeed = 1;
+    public static float soliderAttackRate = 1;  //攻击频率
+    public static float bulletEnemySoliderSpeed = 3;  //子弹速度
+    public static float bulletEnemySoliderDistance = 3.0f;  //射程
+
+    
 
 
 
-    //=================================中立数据=================================//
+    //=================================友军数据=================================//
     //1.战友：可被角色（误伤）和敌人杀死
-    public static int comradeSpeed = 1;
+    public static float comradeSpeed = 1;
     public static float comradeInvincibleTime = 1.5f;  //无敌时间
 }

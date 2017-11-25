@@ -44,7 +44,8 @@ public class Bullet : MonoBehaviour {
         bulletCharacGrenade,
         bulletCharacMissile,
         bulletEnemyTankBunker,
-        bulletEnemyHomingMissile
+        bulletEnemyHomingMissile,
+        bulletEnemySolider
     }
 
     public bullet bulletKind;
@@ -126,6 +127,24 @@ public class Bullet : MonoBehaviour {
                     break;
                 }
 
+            case bullet.bulletEnemySolider:
+                {
+                    float step = GameData.bulletEnemySoliderSpeed * Time.deltaTime;
+                    Vector3 direction = attackPos - bulletInitPos;
+                    var bulletRay = new Ray2D (bulletInitPos, direction);
+                    Debug.DrawLine (bulletRay.origin, attackPos, Color.red, 0.1f);
+
+                    var targetPos = bulletRay.GetPoint (GameData.bulletEnemySoliderDistance);
+                    transform.position = Vector2.MoveTowards (transform.position, targetPos, step);
+
+                    if (new Vector2 (transform.position.x, transform.position.y) == targetPos) {
+                        GetComponent<SpriteRenderer> ().sprite = bulletEffect;
+                        Invoke ("bulletDestroy", 0.1f);
+                    }
+
+                    break;
+                }
+
             case bullet.bulletEnemyHomingMissile: //追踪导弹
                 {
                     float step = GameData.bulletEnemyTankBunkerSpeed * Time.deltaTime;
@@ -158,7 +177,19 @@ public class Bullet : MonoBehaviour {
 
             case "TankBunker":
                 {
-                    if (bulletKind == bullet.bulletEnemyTankBunker)
+                    if (bulletKind == bullet.bulletEnemyTankBunker || bulletKind == bullet.bulletEnemySolider)
+                        return;
+
+                    if (bulletKind == bullet.bulletCharacGrenade || bulletKind == bullet.bulletCharacMissile)
+                        Instantiate (prefabExplode, transform.position, Quaternion.Euler (Vector3.zero));
+
+                    bulletDestroy ();
+                    break;
+                }
+
+            case "EnemySolider":
+                {
+                    if (bulletKind == bullet.bulletEnemyTankBunker || bulletKind == bullet.bulletEnemySolider)
                         return;
 
                     if (bulletKind == bullet.bulletCharacGrenade || bulletKind == bullet.bulletCharacMissile)
@@ -187,6 +218,11 @@ public class Bullet : MonoBehaviour {
                                 break;
                             }
                         case bullet.bulletEnemyTankBunker:
+                            {
+                                bulletDestroy ();
+                                break;
+                            }
+                        case bullet.bulletEnemySolider:
                             {
                                 bulletDestroy ();
                                 break;

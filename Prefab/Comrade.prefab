@@ -1267,6 +1267,7 @@ MonoBehaviour:
   - {fileID: 21300174, guid: f3f48052b480e6c458e7786e67e1a301, type: 3}
   - {fileID: 21300176, guid: f3f48052b480e6c458e7786e67e1a301, type: 3}
   - {fileID: 21300178, guid: f3f48052b480e6c458e7786e67e1a301, type: 3}
+  diePic: {fileID: 21300000, guid: a11b2e8e0d7f623468cc21930516c35d, type: 3}
   isPromoteComrade: 0
   promoteEffect: {fileID: 82525679141429146}
   comradeEffect:
