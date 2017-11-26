@@ -74,6 +74,7 @@ public class Bullet : MonoBehaviour
                     if (System.Math.Round(nowY - initY, 1) >= GameData.bulletCharacMachinGunDistance)
                     {
                         GetComponent<SpriteRenderer>().sprite = bulletEffect;
+                        Destroy(GetComponent<Collider2D>());
                         Invoke("bulletDestroy", 0.1f);
                     }
 
@@ -133,6 +134,7 @@ public class Bullet : MonoBehaviour
                     if (new Vector2(transform.position.x, transform.position.y) == targetPos)
                     {
                         GetComponent<SpriteRenderer>().sprite = bulletEffect;
+                        Destroy(GetComponent<Collider2D>());
                         Invoke("bulletDestroy", 0.1f);
                     }
 
@@ -152,6 +154,7 @@ public class Bullet : MonoBehaviour
                     if (new Vector2(transform.position.x, transform.position.y) == targetPos)
                     {
                         GetComponent<SpriteRenderer>().sprite = bulletEffect;
+                        Destroy(GetComponent<Collider2D>());
                         Invoke("bulletDestroy", 0.1f);
                     }
 
