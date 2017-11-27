@@ -3,6 +3,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Joystick : ScrollRect
 {
@@ -25,4 +27,17 @@ public class Joystick : ScrollRect
             SetContentAnchoredPosition(contentPostion);
         }
     }
+
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        base.OnBeginDrag(eventData);
+        Debug.Log("Begin");
+    }
+
+    public override void OnEndDrag(PointerEventData eventData)
+    {
+        base.OnEndDrag(eventData);
+        Debug.Log("End");
+    }
+   
 }
