@@ -62,5 +62,17 @@ public class Prison : MonoBehaviour
             comrade.GetComponent<Comrade>().ComradeStatus = initStatus;
             comrade.GetComponent<Comrade>().ComradeDirec = initDirection;
         }
+        else  //非可升级战友
+        {
+            //TODO:
+            for (int i = 0; i < Random.Range(2, 5); i++)  //随机刷一定数量的战友(需要解决视觉重叠->碰撞产生的问题)
+            {
+                var comrade = Instantiate(prefabComrade, transform.position, Quaternion.Euler(Vector3.zero));
+                comrade.GetComponent<Comrade>().isPromoteComrade = false;
+
+                comrade.GetComponent<Comrade>().ComradeStatus = initStatus;
+                comrade.GetComponent<Comrade>().ComradeDirec = initDirection;
+            }
+        }
     }
 }
