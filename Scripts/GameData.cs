@@ -50,5 +50,6 @@ public class GameData
 
 
     //=================================冗杂数据=================================//
-    
+    //1.你是祖国的叛徒！
+    public static int killComradeMaxNum = 4;
 }

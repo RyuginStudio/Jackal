@@ -78,6 +78,7 @@ public class Comrade : MonoBehaviour
                 }
             case "BulletMachinGun":
                 {
+                    URTraitor.getInstance().URTraitorOrNot();
                     die();
                     break;
                 }
@@ -88,11 +89,13 @@ public class Comrade : MonoBehaviour
                 }
             case "BulletCharacMissile":
                 {
+                    URTraitor.getInstance().URTraitorOrNot();
                     die();
                     break;
                 }
             case "Grenade":
                 {
+                    URTraitor.getInstance().URTraitorOrNot();
                     die();
                     break;
                 }
