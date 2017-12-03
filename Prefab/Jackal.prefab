@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 82124606934209758}
   - component: {fileID: 82846421228649520}
   - component: {fileID: 82716550848702162}
+  - component: {fileID: 114747938253561978}
   m_Layer: 0
   m_Name: Jackal
   m_TagString: Player1
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab97aa77560b4710a59d51a2769411c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characInvincible: 0
   PassengerHole: 0
   prefabExplode: {fileID: 1210198421501908, guid: a57b15a784700d34a9ee0378a43f6e8b,
     type: 2}
@@ -399,6 +401,33 @@ MonoBehaviour:
   prefabBulletMissile: {fileID: 1978996774663418, guid: f44d8e2b3611fa74ca0f83c22bbc58ce,
     type: 2}
   weaponsHold: 0
+--- !u!114 &114747938253561978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730397961510536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a3ae146b8b96443bbaaddc5ee499de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tips: 
+  AnimationFrames:
+  - {fileID: 21300000, guid: 74b2c376e59174612af4ee5e2845a141, type: 3}
+  - {fileID: 21300002, guid: 74b2c376e59174612af4ee5e2845a141, type: 3}
+  - {fileID: 21300006, guid: 74b2c376e59174612af4ee5e2845a141, type: 3}
+  - {fileID: 21300004, guid: 74b2c376e59174612af4ee5e2845a141, type: 3}
+  FramesIdx: 0
+  RepeatIdx: 0
+  RepeatOrNot: 1
+  PlayFinished: 0
+  ScheduleUpdate: 0
+  CurrentTime: 0
+  DeltaTime: 0.01
+  autoPlay: 0
+  attackAnimation: 0
+  Tag: CommonInvincibleAnima
 --- !u!212 &212123866821281726
 SpriteRenderer:
   m_ObjectHideFlags: 1

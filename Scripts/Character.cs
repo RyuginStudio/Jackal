@@ -7,22 +7,27 @@ public class Character : MonoBehaviour
     float currentTime;
     float directionUpdate;
     float moveAnimaUpdate;
-    public int PassengerHole; //当前载客量
+    float invinTimeUpdate;  //无敌时间定时器
+    public bool characInvincible;  //角色无敌状态
+    public int PassengerHole;  //当前载客量  TODO：未启用
     public GameObject prefabExplode;
 
     // Use this for initialization
     void Start()
     {
         currentTime = Time.time;
-        directionUpdate = currentTime;
-        moveAnimaUpdate = currentTime;
+        directionUpdate = Time.time;
+        moveAnimaUpdate = Time.time;
+        invinTimeUpdate = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
         currentTime = Time.time;
+
         CharacterMove();
+        invincibleOrNot();  //判断无敌状态
     }
 
     public enum Status
@@ -567,9 +572,42 @@ public class Character : MonoBehaviour
 
     void CharacDiedBomb()
     {
-        GameObject.Destroy(gameObject); //销毁Jackal
-        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
-        GameControler.getInstance().characSpawn(transform.position);
+        if (!characInvincible)
+        {
+            GameObject.Destroy(gameObject); //销毁Jackal
+            Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+            GameControler.getInstance().characSpawn(transform.position);
+        }
+    }
+
+    public void invincibleOrNot()  //是否无敌 => true为无敌
+    {
+        if (currentTime - invinTimeUpdate <= GameData.CharacterInvincibleTime)
+        {
+            characInvincible = true;
+
+            //无敌闪烁
+            foreach (var item in GetComponents<AnimationPlayer>())
+            {
+                if (item.Tag == "CommonInvincibleAnima")
+                {
+                    item.autoPlay = true;
+                }
+            }
+        }
+        else
+        {
+            characInvincible = false;
+            foreach (var item in GetComponents<AnimationPlayer>())
+            {
+                if (item.Tag == "CommonInvincibleAnima")
+                {
+                    item.autoPlay = false;
+                    GetComponent<SpriteRenderer>().sprite = item.AnimationFrames[0];
+                }
+            }
+        }
+
     }
 
 }
