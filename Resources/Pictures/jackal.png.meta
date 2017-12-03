@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 74b2c376e59174612af4ee5e2845a141
-timeCreated: 1510124657
+timeCreated: 1512304093
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,7 @@ TextureImporter:
     21300010: jackal_5
     21300012: jackal_6
     21300014: jackal_7
+    21300016: jackal_8
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -105,10 +106,10 @@ TextureImporter:
       name: jackal_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 8
+        y: 260
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,10 +119,10 @@ TextureImporter:
       name: jackal_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 8
+        y: 228
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +132,10 @@ TextureImporter:
       name: jackal_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 8
+        y: 196
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,10 +145,10 @@ TextureImporter:
       name: jackal_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
+        x: 8
+        y: 164
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +158,10 @@ TextureImporter:
       name: jackal_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 8
+        y: 132
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +171,10 @@ TextureImporter:
       name: jackal_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 8
+        y: 100
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +184,10 @@ TextureImporter:
       name: jackal_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 8
+        y: 69
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +197,23 @@ TextureImporter:
       name: jackal_7
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
+        x: 8
+        y: 37
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jackal_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 5
+        width: 16
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
