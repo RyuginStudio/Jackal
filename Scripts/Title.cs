@@ -36,11 +36,11 @@ public class Title : MonoBehaviour
     {
         if (choiceBlink)
         {
-            if (currentTime - animationUpdate > 0.2f && currentTime - animationUpdate < 0.4f)
+            if (currentTime - animationUpdate > 0.2f && currentTime - animationUpdate < 0.3f)
             {
                 whichMask.SetActive(true);
             }
-            else if (currentTime - animationUpdate > 0.4f)
+            else if (currentTime - animationUpdate > 0.3f)
             {
                 whichMask.SetActive(false);
                 animationUpdate = Time.time;
@@ -50,7 +50,7 @@ public class Title : MonoBehaviour
 
     void jumpScene(int Players)
     {
-        StartCoroutine(SceneTransition.getInstance().loadScene("MainScene", 1, 2));
+        StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 1, 2));
     }
 
     public void onBtn1Player()
