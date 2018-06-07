@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Title : MonoBehaviour
 {
 
     private float currentTime;
     private float animationUpdate;
-    private float logoAlpha = 0;  //图片alpha值
     private bool choiceBlink = false;  //闪烁动画
     public GameObject carChoicePic;
     public GameObject mask1P;
     public GameObject mask2P;
-    public AudioSource[] ExplodeEffect;
+    public GameObject blinkMask;
+    public GameObject ExplodeEffect;
+
+    public Button btn_1_Player;
+    public Button btn_2_Players;
 
     // Use this for initialization
     void Start()
@@ -26,54 +29,55 @@ public class Title : MonoBehaviour
     void Update()
     {
         currentTime = Time.time;
-
-        AlpahAnim();
-        choice1pOr2p();
-        itemBlink();
+        itemBlink(blinkMask);
     }
 
-    void AlpahAnim()
+    void itemBlink(GameObject whichMask)  //1p、2p选好后闪烁
     {
-        var TitleColor = GetComponent<SpriteRenderer>().color;
-
-        if (currentTime - animationUpdate >= 0.1f)
-        {
-            GetComponent<SpriteRenderer>().color = new Color(TitleColor.r, TitleColor.g, TitleColor.b, logoAlpha += 0.02f);
-            if (GetComponent<SpriteRenderer>().color.a >= 1)
-            {
-                carChoicePic.SetActive(true);
-            }
-        }
-    }
-
-    void choice1pOr2p()
-    {
-        if (Input.GetKeyDown(KeyCode.Return) && GetComponent<SpriteRenderer>().color.a >= 1)
-        {
-            choiceBlink = true;
-            ExplodeEffect[Random.Range(0, 3)].Play();
-            Invoke("jumpScene", 2.5f);
-        }
-    }
-
-    void itemBlink()  //1p、2p选好后闪烁
-    {
-        if (choiceBlink == true)
+        if (choiceBlink)
         {
             if (currentTime - animationUpdate > 0.2f && currentTime - animationUpdate < 0.4f)
             {
-                mask1P.SetActive(true);
+                whichMask.SetActive(true);
             }
             else if (currentTime - animationUpdate > 0.4f)
             {
-                mask1P.SetActive(false);
+                whichMask.SetActive(false);
                 animationUpdate = Time.time;
             }
         }
     }
 
-    void jumpScene()
+    void jumpScene(int Players)
     {
-        SceneManager.LoadScene("MainScene");
+        StartCoroutine(SceneTransition.getInstance().loadScene("MainScene", 1, 2));
+    }
+
+    public void onBtn1Player()
+    {
+        (ExplodeEffect.GetComponents<AudioSource>())[Random.Range(0, 5)].Play();
+        carChoiceDisplay(btn_1_Player.transform);
+        blinkMask = mask1P;
+        choiceBlink = true;
+        btn_1_Player.GetComponent<Button>().interactable = false;
+        btn_2_Players.GetComponent<Button>().interactable = false;
+        jumpScene(1);
+    }
+
+    public void onBtn2Players()
+    {
+        (ExplodeEffect.GetComponents<AudioSource>())[Random.Range(0, 5)].Play();
+        carChoiceDisplay(btn_2_Players.transform);
+        blinkMask = mask2P;
+        choiceBlink = true;
+        btn_1_Player.GetComponent<Button>().interactable = false;
+        btn_2_Players.GetComponent<Button>().interactable = false;
+        jumpScene(2);
+    }
+
+    public void carChoiceDisplay(Transform p)
+    {
+        var pos = carChoicePic.transform.position;
+        carChoicePic.transform.position = new Vector3(pos.x, p.position.y, pos.z);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Logo : MonoBehaviour
 {
@@ -34,11 +35,11 @@ public class Logo : MonoBehaviour
 
     void playAnimation()
     {
-        var LogoColor = GetComponent<SpriteRenderer>().color;
+        var LogoColor = GetComponent<Image>().color;
 
         if (currentTime - animationUpdate >= 0.1f)
         {
-            GetComponent<SpriteRenderer>().color = new Color(LogoColor.r, LogoColor.g, LogoColor.b, logoAlpha += 0.02f);
+            GetComponent<Image>().color = new Color(LogoColor.r, LogoColor.g, LogoColor.b, logoAlpha += 0.02f);
         }
     }
 
