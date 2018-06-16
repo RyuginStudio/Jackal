@@ -292,6 +292,14 @@ Prefab:
       propertyPath: m_Name
       value: AudioControler
       objectReference: {fileID: 0}
+    - target: {fileID: 4235226128801812, guid: 73024a947dd7b714abdcc34dc44a835e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235226128801812, guid: 73024a947dd7b714abdcc34dc44a835e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -33.03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73024a947dd7b714abdcc34dc44a835e, type: 2}
   m_IsPrefabParent: 0
