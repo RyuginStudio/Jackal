@@ -62,7 +62,6 @@ public class CharacterAttack : MonoBehaviour
                 fireInTheHole.Play();
                 var bulletPrefab = Instantiate(prefabBulletGrenade, transform.position, new Quaternion(0, 0, 0, 0));
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
-                bulletPrefab.GetComponent<Bullet>().characArrowPos = GameObject.Find("DirectionArrow").transform.position;
             }
             else if (weaponsHold == weapons.missile && currentTime - missileColdDownUpdate >= GameData.CharacMissileColdDown)
             {
@@ -70,7 +69,6 @@ public class CharacterAttack : MonoBehaviour
                 missileLaunchEffect.Play();
                 var bulletPrefab = Instantiate(prefabBulletMissile, transform.position, this.transform.rotation);
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
-                bulletPrefab.GetComponent<Bullet>().characArrowPos = GameObject.Find("DirectionArrow").transform.position;
             }
 
         }

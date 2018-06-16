@@ -38,6 +38,10 @@ public class Bullet : MonoBehaviour
     {
         bulletInitPos = Shotter.transform.position;
 
+        //射手来自角色本身
+        if (this.Shotter == GameObject.FindGameObjectWithTag("Player1"))
+            this.characArrowPos = GameObject.Find("DirectionArrow").transform.position;
+
         if (bulletKind != bullet.bulletCharacMachinGun && bulletKind != bullet.bulletCharacGrenade)
         {
             target = GameObject.FindGameObjectWithTag("Player1");
