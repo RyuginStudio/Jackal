@@ -1710,6 +1710,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709592129}
+--- !u!4 &1724018334 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4500872198119594, guid: 84c88f7d2bb960e4db016482fe7e1244,
+    type: 2}
+  m_PrefabInternal: {fileID: 2057445064}
 --- !u!1001 &1751830604
 Prefab:
   m_ObjectHideFlags: 0
@@ -1778,6 +1783,7 @@ GameObject:
   - component: {fileID: 1949574067}
   - component: {fileID: 1949574066}
   - component: {fileID: 1949574071}
+  - component: {fileID: 1949574072}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1870,6 +1876,22 @@ MonoBehaviour:
   TransionMask: {fileID: 1699417076}
   IncreaseSwitch: 0
   DeclineSwitch: 1
+--- !u!114 &1949574072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1949574065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e838ffb7275b04c47a1efa85b7922f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1724018334}
+  damping: 0.1
+  lookAheadFactor: 0
+  lookAheadReturnSpeed: 0.5
+  lookAheadMoveThreshold: 0.1
 --- !u!1 &2032447617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,11 +1997,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4500872198119594, guid: 84c88f7d2bb960e4db016482fe7e1244, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.71
+      value: -5.26
       objectReference: {fileID: 0}
     - target: {fileID: 4500872198119594, guid: 84c88f7d2bb960e4db016482fe7e1244, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.9500008
+      value: -2.63
       objectReference: {fileID: 0}
     - target: {fileID: 4500872198119594, guid: 84c88f7d2bb960e4db016482fe7e1244, type: 2}
       propertyPath: m_LocalPosition.z

@@ -55,14 +55,8 @@ public class Character : MonoBehaviour
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
 
-        if (horizontal != 0)
-        {
-            this.transform.position = new Vector2(transform.position.x + horizontal * GameData.CharacterSpeed * Time.deltaTime, transform.position.y);
-        }
-        if (vertical != 0)
-        {
-            this.transform.position = new Vector2(transform.position.x, transform.position.y + vertical * GameData.CharacterSpeed * Time.deltaTime);
-        }
+        //操纵角色刚体线速度
+        GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * GameData.CharacterSpeed, vertical * GameData.CharacterSpeed);
 
         if (currentTime - directionUpdate > GameData.TurnSensitivity) //要先转到斜方向，不是立刻转到上、下、左、右
         {
@@ -74,12 +68,12 @@ public class Character : MonoBehaviour
         if (CharacterStatus == Status.move && currentTime - moveAnimaUpdate > 0.05f)
         {
             moveAnimaUpdate = Time.time;
-            CharacMoveAnima();
+            //CharacMoveAnim();
         }
 
     }
 
-    void CharacMoveAnima() //移动动画
+    void CharacMoveAnim() //移动动画
     {
         GameData.UpOrDown *= -1;
         var pos = this.transform.position;
