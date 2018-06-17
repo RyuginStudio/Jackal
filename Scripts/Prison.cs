@@ -14,11 +14,12 @@ public class Prison : MonoBehaviour
     public Comrade.status initStatus;
     public Comrade.direction initDirection;
 
+    Transform trans_BulletsAndExplode;
 
     // Use this for initialization
     void Start()
     {
-
+        trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;
     }
 
     // Update is called once per frame
@@ -33,14 +34,14 @@ public class Prison : MonoBehaviour
         {
             case "Grenade":
                 {
-                    Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                    Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                     prisonDamage();
                     break;
                 }
 
             case "BulletCharacMissile":
                 {
-                    Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                    Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                     prisonDamage();
                     break;
                 }

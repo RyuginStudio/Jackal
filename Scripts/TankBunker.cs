@@ -12,12 +12,16 @@ public class TankBunker : Enemy
     private Vector3 attackPos; //攻击目标
     public GameObject prefabBulletTankBunker;
 
+    Transform trans_BulletsAndExplode;
+
     // Use this for initialization
     void Start()
     {
         currentTime = Time.time;
         attackUpdate = Time.time;
         init();
+
+        trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;
     }
 
     // Update is called once per frame
@@ -54,7 +58,7 @@ public class TankBunker : Enemy
     void attackDetail()
     {
         attackAnimation();
-        var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(Vector3.zero));
+        var bulletPrefab = Instantiate(prefabBulletTankBunker, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
         bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject; //通过脚本获取物体
         bulletPrefab.GetComponent<Bullet>().attackPos = this.attackPos;
     }
@@ -149,7 +153,7 @@ public class TankBunker : Enemy
     void DiedBomb()
     {
         GameObject.Destroy(gameObject); //销毁Jackal
-        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
     }
 
 }

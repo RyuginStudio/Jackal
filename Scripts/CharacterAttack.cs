@@ -22,6 +22,8 @@ public class CharacterAttack : MonoBehaviour
     private float GrenadeColdDownUpdate;
     private float missileColdDownUpdate;
 
+    Transform trans_BulletsAndExplode;
+
     public enum weapons  //技能系武器
     {
         grenade,
@@ -35,6 +37,8 @@ public class CharacterAttack : MonoBehaviour
     {
         instance = this;
         weaponsHold = weapons.grenade;
+
+        trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;
     }
 
     // Update is called once per frame
@@ -50,7 +54,7 @@ public class CharacterAttack : MonoBehaviour
         {
             //Debug.Log("machineGun");
             machinGunEffect.Play();
-            var bulletPrefab = Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0));
+            var bulletPrefab = Instantiate(prefabBulletMachinGun, transform.position, new Quaternion(0, 0, 0, 0), trans_BulletsAndExplode);
             bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;  //通过脚本获取物体
         }
 
@@ -60,14 +64,14 @@ public class CharacterAttack : MonoBehaviour
             {
                 GrenadeColdDownUpdate = Time.time;
                 fireInTheHole.Play();
-                var bulletPrefab = Instantiate(prefabBulletGrenade, transform.position, new Quaternion(0, 0, 0, 0));
+                var bulletPrefab = Instantiate(prefabBulletGrenade, transform.position, new Quaternion(0, 0, 0, 0), trans_BulletsAndExplode);
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
             }
             else if (weaponsHold == weapons.missile && currentTime - missileColdDownUpdate >= GameData.CharacMissileColdDown)
             {
                 missileColdDownUpdate = Time.time;
                 missileLaunchEffect.Play();
-                var bulletPrefab = Instantiate(prefabBulletMissile, transform.position, this.transform.rotation);
+                var bulletPrefab = Instantiate(prefabBulletMissile, transform.position, this.transform.rotation, trans_BulletsAndExplode);
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
             }
 

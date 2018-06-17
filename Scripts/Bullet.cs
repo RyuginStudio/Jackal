@@ -17,6 +17,8 @@ public class Bullet : MonoBehaviour
     public Sprite bulletEffect; //子弹爆炸效果
     public GameObject prefabExplode; //手榴弹爆炸预制体
 
+    public Transform trans_BulletsAndExplode;
+
     // Use this for initialization
     void Start()
     {
@@ -47,6 +49,7 @@ public class Bullet : MonoBehaviour
             target = GameObject.FindGameObjectWithTag("Player1");
         }
 
+        trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;
     }
 
     public enum bullet
@@ -97,7 +100,7 @@ public class Bullet : MonoBehaviour
 
                     if (new Vector2(transform.position.x, transform.position.y) == pos)
                     {
-                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                         bulletDestroy();
                     }
 
@@ -116,7 +119,7 @@ public class Bullet : MonoBehaviour
 
                     if (new Vector2(transform.position.x, transform.position.y) == pos)
                     {
-                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                         bulletDestroy();
                     }
 
@@ -203,7 +206,7 @@ public class Bullet : MonoBehaviour
                         return;
 
                     if (bulletKind == bullet.bulletCharacGrenade || bulletKind == bullet.bulletCharacMissile)
-                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                        Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
 
                     bulletDestroy();
                     break;
@@ -221,7 +224,7 @@ public class Bullet : MonoBehaviour
                     break;
                 }
 
-            case "Obstacle": //阻挡除手榴弹意外子弹的障碍物
+            case "Obstacle": //阻挡除手榴弹以外子弹的障碍物
                 {
                     switch (bulletKind)
                     {
@@ -236,7 +239,7 @@ public class Bullet : MonoBehaviour
                             }
                         case bullet.bulletCharacMissile:
                             {
-                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                                 bulletDestroy();
                                 break;
                             }
@@ -247,6 +250,30 @@ public class Bullet : MonoBehaviour
                             }
                         case bullet.bulletEnemySolider:
                             {
+                                bulletDestroy();
+                                break;
+                            }
+                    }
+
+                    break;
+                }
+
+            case "OneSideObstacle": //"单方向障碍物" => 只针对角色：阻挡除手榴弹以外的任何攻击方式
+                {
+                    switch (bulletKind)
+                    {
+                        case bullet.bulletCharacMachinGun:
+                            {
+                                bulletDestroy();
+                                break;
+                            }
+                        case bullet.bulletCharacGrenade:
+                            {
+                                break; //手雷越垒效果
+                            }
+                        case bullet.bulletCharacMissile:
+                            {
+                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                                 bulletDestroy();
                                 break;
                             }
@@ -266,13 +293,13 @@ public class Bullet : MonoBehaviour
                             }
                         case bullet.bulletCharacGrenade:
                             {
-                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                                 bulletDestroy();
                                 break;
                             }
                         case bullet.bulletCharacMissile:
                             {
-                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+                                Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
                                 bulletDestroy();
                                 break;
                             }

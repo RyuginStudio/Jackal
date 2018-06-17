@@ -17,6 +17,7 @@ public class Solider : Enemy
     public Sprite lookUp;
     public Sprite lookDown;
 
+    Transform trans_BulletsAndExplode;
 
     // Use this for initialization
     void Start()
@@ -25,6 +26,8 @@ public class Solider : Enemy
         swapStatusUpdate = currentTime - 2;
 
         this.target = GameObject.FindGameObjectWithTag("Player1");
+
+        trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;
     }
 
     // Update is called once per frame
@@ -147,7 +150,7 @@ public class Solider : Enemy
 
             attackPos = target.transform.position;
             shootEffect[Random.Range(0, shootEffect.Length)].Play();
-            var bulletPrefab = Instantiate(prefabBulletSolider, transform.position, Quaternion.Euler(Vector3.zero));
+            var bulletPrefab = Instantiate(prefabBulletSolider, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
             bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject; //通过脚本获取物体			
             bulletPrefab.GetComponent<Bullet>().attackPos = this.attackPos;
         }

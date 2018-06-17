@@ -68,7 +68,7 @@ public class Character : MonoBehaviour
         if (CharacterStatus == Status.move && currentTime - moveAnimaUpdate > 0.05f)
         {
             moveAnimaUpdate = Time.time;
-            //CharacMoveAnim();
+            CharacMoveAnim();
         }
 
     }
@@ -568,8 +568,9 @@ public class Character : MonoBehaviour
     {
         if (!characInvincible)
         {
+            var trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;
             GameObject.Destroy(gameObject); //销毁Jackal
-            Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero));
+            Instantiate(prefabExplode, transform.position, Quaternion.Euler(Vector3.zero), trans_BulletsAndExplode);
             GameControler.getInstance().characSpawn(transform.position);
         }
     }
