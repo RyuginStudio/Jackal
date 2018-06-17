@@ -1199,6 +1199,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -33.03
       objectReference: {fileID: 0}
+    - target: {fileID: 82181014847782182, guid: 73024a947dd7b714abdcc34dc44a835e,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 41f2f76c9a7dbfc43bce5187c7ba0351, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73024a947dd7b714abdcc34dc44a835e, type: 2}
   m_IsPrefabParent: 0
