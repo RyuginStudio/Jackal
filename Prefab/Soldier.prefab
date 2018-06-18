@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 82770768945597420}
   - component: {fileID: 82517201794082488}
   - component: {fileID: 82534779817237972}
+  - component: {fileID: 114756857416679644}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: EnemySolider
@@ -849,6 +850,17 @@ MonoBehaviour:
   autoPlay: 0
   attackAnimation: 0
   Tag: down
+--- !u!114 &114756857416679644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1666406800310990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ff9a9ccb7a2e040b68d50517f7c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114999921716036584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -914,5 +926,3 @@ SpriteRenderer:
   m_Size: {x: 0.12, y: 0.15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0

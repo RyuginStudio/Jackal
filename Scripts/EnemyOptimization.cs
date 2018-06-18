@@ -25,25 +25,13 @@ public class EnemyOptimization : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        switch (gameObject.tag)
-        {
-            case "TankBunker":
-                {
-                    GetComponent<TankBunker>().enabled = false;
-                    break;
-                }
-        }
+        if (GetComponent<Enemy>())
+            GetComponent<Enemy>().enabled = false;
     }
 
     private void OnBecameVisible()
     {
-        switch (gameObject.tag)
-        {
-            case "TankBunker":
-                {
-                    GetComponent<TankBunker>().enabled = true;
-                    break;
-                }
-        }
+        if (GetComponent<Enemy>())
+            GetComponent<Enemy>().enabled = true;
     }
 }
