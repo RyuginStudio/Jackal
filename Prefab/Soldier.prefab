@@ -49,8 +49,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1666406800310990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.876598, y: -1.6248008, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.03, y: 1.09, z: 10}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1666406800310990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2104aa8174e2d04b9aaf5438380ec66, type: 3}
   m_Name: 
@@ -798,7 +798,8 @@ MonoBehaviour:
   lookRight: {fileID: 21300014, guid: 16a2143d33b080c49b7d0f5a2647f948, type: 3}
   lookUp: {fileID: 21300000, guid: 16a2143d33b080c49b7d0f5a2647f948, type: 3}
   lookDown: {fileID: 21300004, guid: 16a2143d33b080c49b7d0f5a2647f948, type: 3}
-  SoliderStatus: 0
+  admitMove: 1
+  SoliderStatus: 1
   SoliderDirec: 0
 --- !u!114 &114566646838845206
 MonoBehaviour:

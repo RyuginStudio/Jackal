@@ -19,12 +19,12 @@ public class Solider : Enemy
 
     Transform trans_BulletsAndExplode;
 
+    public bool admitMove = true;
+
     // Use this for initialization
     void Start()
     {
         currentTime = Time.time;
-       
-        SoliderStatus = status.move;
 
         this.target = GameObject.FindGameObjectWithTag("Player1");
 
@@ -60,7 +60,7 @@ public class Solider : Enemy
     public override void move()
     {
 
-        if (SoliderStatus == status.move && GameObject.FindGameObjectsWithTag("Player1") != null)
+        if (SoliderStatus == status.move && GameObject.FindGameObjectsWithTag("Player1") != null && admitMove)
         {
             var step = GameData.soliderSpeed * Time.deltaTime;
             target = GameObject.FindGameObjectWithTag("Player1");
@@ -159,7 +159,7 @@ public class Solider : Enemy
 
     void changeStatus() //每隔两秒切换Solider状态
     {
-        if (currentTime - swapStatusUpdate >= 2)
+        if (currentTime - swapStatusUpdate >= 2 && admitMove)
         {
             swapStatusUpdate = Time.time;
 
