@@ -18,7 +18,7 @@ public class TankBunker : Enemy
     void Start()
     {
         currentTime = Time.time;
-        attackUpdate = Time.time - GameData.TankBunkerAttackRate;
+
         init();
 
         trans_BulletsAndExplode = GameObject.FindWithTag("trans_BulletsAndExplode").transform;

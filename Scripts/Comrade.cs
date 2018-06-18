@@ -15,6 +15,9 @@ public class Comrade : MonoBehaviour
     private float invincibleUpdate; //无敌定时器(刚生成时无敌状态)
     private float currentTime;
 
+    //默认允许更改状态
+    public bool admitChangeStatus = true;
+
     public enum status
     {
         idle,
@@ -133,7 +136,7 @@ public class Comrade : MonoBehaviour
 
     void changeStatus() //每隔两秒切换comrade状态
     {
-        if (currentTime - swapStatusUpdate >= 2)
+        if (currentTime - swapStatusUpdate >= 2 && admitChangeStatus)
         {
             swapStatusUpdate = Time.time;
 
@@ -188,7 +191,7 @@ public class Comrade : MonoBehaviour
         }
     }
 
-    void animationPlay()
+    public void animationPlay()
     {
         if (ComradeStatus == status.idle)
         {

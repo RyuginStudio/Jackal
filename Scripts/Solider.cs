@@ -23,7 +23,8 @@ public class Solider : Enemy
     void Start()
     {
         currentTime = Time.time;
-        swapStatusUpdate = currentTime - 2;
+       
+        SoliderStatus = status.move;
 
         this.target = GameObject.FindGameObjectWithTag("Player1");
 
