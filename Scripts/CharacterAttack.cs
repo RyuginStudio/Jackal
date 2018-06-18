@@ -71,7 +71,7 @@ public class CharacterAttack : MonoBehaviour
             {
                 missileColdDownUpdate = Time.time;
                 missileLaunchEffect.Play();
-                var bulletPrefab = Instantiate(prefabBulletMissile, transform.position, this.transform.rotation, trans_BulletsAndExplode);
+                var bulletPrefab = Instantiate(prefabBulletMissile, transform.position, this.transform.localRotation, trans_BulletsAndExplode);
                 bulletPrefab.GetComponent<Bullet>().Shotter = transform.gameObject;
             }
 
